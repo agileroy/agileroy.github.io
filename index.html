@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vincent Leroy – Scrum Master</title>
+<meta name="description" content="Vincent Leroy, Scrum Master freelance (SAFe, PSM II, PSPO I, PSK) basé à Lille. J'aide les équipes à collaborer pour livrer ce dont les utilisateurs ont vraiment besoin.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f4ee; --surface:#ffffff; --surface-2:#efeae1;
+  --ink:#1c2230; --muted:#5d6475; --line:#e2dccf;
+  --accent:#c4552d; --accent-ink:#ffffff; --accent-soft:#f6e3d9;
+  --gold:#c9a24a; --ok:#2f7d5b;
+  --radius:18px; --shadow:0 1px 2px rgba(28,34,48,.05),0 8px 28px rgba(28,34,48,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#13161d; --surface:#1b1f28; --surface-2:#222734;
+    --ink:#ecebe6; --muted:#a3a8b5; --line:#2d3341;
+    --accent:#ec7a50; --accent-ink:#1a0f0a; --accent-soft:#3a241c;
+    --gold:#d9b660; --ok:#5cc495;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#13161d; --surface:#1b1f28; --surface-2:#222734;
+  --ink:#ecebe6; --muted:#a3a8b5; --line:#2d3341;
+  --accent:#ec7a50; --accent-ink:#1a0f0a; --accent-soft:#3a241c;
+  --gold:#d9b660; --ok:#5cc495;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 "Manrope",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Fraunces",Georgia,serif;font-weight:650;line-height:1.15;margin:0}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+/* nav */
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:16px;height:60px}
+.brand{font-family:"Fraunces",serif;font-weight:650;text-decoration:none;font-size:18px;margin-right:auto}
+.brand span{color:var(--accent)}
+.links{display:flex;gap:22px}
+.links a{text-decoration:none;color:var(--muted);font-weight:500;font-size:15px}
+.links a:hover{color:var(--ink)}
+.theme{border:1px solid var(--line);background:var(--surface);color:var(--ink);width:38px;height:38px;border-radius:50%;cursor:pointer;display:grid;place-items:center}
+@media (max-width:760px){.links{display:none}}
+
+/* hero */
+.hero{padding:72px 0 56px}
+.hero .wrap{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent);padding:6px 12px;border-radius:99px}
+.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ok)}
+.hero h1{font-size:clamp(40px,6vw,64px);margin:18px 0 10px;letter-spacing:-.01em}
+.hero .role{font-size:clamp(18px,2.2vw,22px);color:var(--muted);margin:0 0 22px}
+.hero .role b{color:var(--ink);font-weight:600}
+.hero p.pitch{font-size:18px;max-width:560px;margin:0 0 28px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:12px;font-weight:600;text-decoration:none;border:1px solid var(--line);background:var(--surface);transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.photo{width:240px;height:240px;border-radius:50%;padding:6px;background:conic-gradient(from 210deg,var(--gold),var(--accent),var(--gold));box-shadow:var(--shadow)}
+.photo img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;border:4px solid var(--bg)}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.tag{font-size:13px;font-weight:600;padding:5px 11px;border-radius:8px;background:var(--surface-2);color:var(--muted)}
+@media (max-width:760px){
+  .hero{padding:44px 0 36px}
+  .hero .wrap{grid-template-columns:1fr;gap:28px}
+  .photo{width:150px;height:150px;order:-1}
+}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+.stat .n{font-family:"Fraunces",serif;font-size:38px;font-weight:650;color:var(--accent);line-height:1}
+.stat .l{font-size:14px;color:var(--muted);margin-top:8px}
+@media (max-width:860px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+/* sections */
+section{padding:56px 0}
+.head{display:flex;align-items:baseline;gap:14px;margin-bottom:28px}
+.head .num{font-family:"Fraunces",serif;color:var(--accent);font-size:15px;font-weight:650}
+.head h2{font-size:clamp(28px,3.6vw,38px)}
+.lead{color:var(--muted);max-width:680px;margin:-12px 0 28px}
+
+/* approach */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pillar{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.pillar .ic{width:42px;height:42px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;margin-bottom:14px}
+.pillar h3{font-size:20px;margin-bottom:8px}
+.pillar p{margin:0;color:var(--muted);font-size:15px}
+@media (max-width:860px){.pillars{grid-template-columns:1fr}}
+
+/* timeline */
+.job{display:grid;grid-template-columns:190px 1fr;gap:28px;padding:28px 0;border-top:1px solid var(--line)}
+.job:first-of-type{border-top:0;padding-top:0}
+.when{font-size:14px;color:var(--muted);font-weight:600}
+.when .dur{display:block;font-weight:400}
+.job h3{font-size:23px}
+.job .co{color:var(--accent);font-weight:700;font-size:15px;margin:4px 0 12px}
+.job .ctx{font-weight:600;margin:0 0 10px}
+.job ul{margin:0 0 0 0;padding-left:20px}
+.job li{margin:6px 0}
+.job li::marker{color:var(--accent)}
+.wins{margin-top:16px;background:color-mix(in srgb,var(--ok) 9%,var(--surface));border:1px solid color-mix(in srgb,var(--ok) 25%,var(--line));border-radius:14px;padding:16px 18px}
+.wins b{display:block;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ok);margin-bottom:6px}
+.wins ul{list-style:none;padding:0}
+.wins li{padding-left:24px;position:relative}
+.wins li::before{content:"✓";position:absolute;left:0;color:var(--ok);font-weight:700}
+.sub{margin-top:14px}
+.sub h4{margin:16px 0 4px;font-size:16px}
+.sub p{margin:0;color:var(--muted)}
+details.more{margin-top:12px}
+details.more summary{cursor:pointer;color:var(--accent);font-weight:600;font-size:15px}
+@media (max-width:760px){.job{grid-template-columns:1fr;gap:8px}}
+
+/* certifs */
+.certs{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.cert{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:4px}
+.cert .y{font-size:13px;color:var(--muted);font-weight:600}
+.cert .t{font-weight:700}
+.cert .o{font-size:13px;color:var(--muted)}
+
+/* misc grid */
+.grid2{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.card h3{font-size:19px;margin-bottom:12px}
+.card ul{list-style:none;padding:0;margin:0}
+.card li{padding:6px 0;border-bottom:1px dashed var(--line)}
+.card li:last-child{border-bottom:0}
+.card li small{color:var(--muted);display:block}
+@media (max-width:860px){.grid2{grid-template-columns:1fr}}
+
+.clients{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.client{margin:0;padding:16px 12px 14px;border-radius:var(--radius);border:1px solid var(--line);background:var(--surface);display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.client img{width:88px;height:88px;object-fit:contain;border-radius:14px;background:#fff;display:block}
+.client figcaption{font-size:13px;font-weight:600;color:var(--muted);line-height:1.3}
+@media (max-width:860px){.clients{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:420px){.client img{width:68px;height:68px}}
+
+/* contact */
+.contact{background:var(--ink);color:var(--bg);border-radius:28px;padding:48px;display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:center;margin:24px 0 56px}
+.contact h2{font-size:clamp(28px,4vw,40px);margin-bottom:12px}
+.contact p{opacity:.8;margin:0}
+.contact .btn{background:transparent;color:var(--bg);border-color:color-mix(in srgb,var(--bg) 30%,transparent);justify-content:center}
+.contact .btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.contact .acts{display:flex;flex-direction:column;gap:12px}
+@media (max-width:760px){.contact{grid-template-columns:1fr;padding:30px 22px}}
+footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
+
+/* print = CV */
+@media print{
+  nav,.theme,.cta,footer,details.more summary{display:none}
+  details.more>*{display:block}
+  body{background:#fff;color:#000;font-size:12px}
+  section,.hero{padding:16px 0}
+  .stat,.pillar,.card,.cert{box-shadow:none}
+  .contact{background:#fff;color:#000;border:1px solid #ccc}
+  .job{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">Vincent Leroy<span>.</span></a>
+    <div class="links">
+      <a href="#approche">Approche</a>
+      <a href="#parcours">Parcours</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="theme" id="themeBtn" aria-label="Changer de thème">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Freelance · Lille &amp; Île-de-France</span>
+      <h1>Vincent Leroy</h1>
+      <p class="role"><b>Scrum Master</b> · SAFe · PSM II · PSPO I · PSK</p>
+      <p class="pitch">Ancien développeur devenu Scrum Master, j'aide les équipes à mieux collaborer pour livrer ce dont leurs utilisateurs ont vraiment besoin — avec des résultats que l'on peut mesurer.</p>
+      <div class="cta">
+        <a class="btn primary" href="#contact">Discutons de votre contexte</a>
+        <a class="btn" href="https://www.linkedin.com/in/leroy-vincent/" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.3-.02-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9V21H9z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+      <div class="tags">
+        <span class="tag">Scrum</span><span class="tag">Kanban</span><span class="tag">SAFe</span><span class="tag">Coaching d'équipe</span><span class="tag">Facilitation</span><span class="tag">Jira · Azure DevOps</span>
+      </div>
+    </div>
+    <div class="photo"><img src="img/photo.svg" alt="Portrait de Vincent Leroy"></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><div class="n">÷2</div><div class="l">Cycle time d'une équipe data après 6 mois d'accompagnement</div></div>
+    <div class="stat"><div class="n">80 %+</div><div class="l">Des engagements tenus à chaque PI, depuis un an et demi</div></div>
+    <div class="stat"><div class="n">9 ans</div><div class="l">En tant que Scrum Master, après 6 ans de développement</div></div>
+    <div class="stat"><div class="n">9</div><div class="l">Certifications Agile (Scrum.org, SAFe, Management 3.0…)</div></div>
+  </div>
+</div>
+
+<section id="approche">
+  <div class="wrap">
+    <div class="head"><span class="num">01</span><h2>Ma façon d'accompagner</h2></div>
+    <p class="lead">Mon passé de développeur me permet de comprendre les contraintes techniques des équipes ; mon rôle de Scrum Master, de les aider à les dépasser ensemble.</p>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M14 20c.3-2.3 1.6-4 3.5-4s3.5 1.8 3.5 4"/></svg></div>
+        <h3>Faire collaborer</h3>
+        <p>Créer un engagement collectif autour d'objectifs de sprint clairs, et synchroniser les équipes et les PO quand plusieurs trains se croisent.</p>
+      </div>
+      <div class="pillar">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
+        <h3>Mesurer pour progresser</h3>
+        <p>Cycle time, tenue des engagements, fiabilité des estimations : des indicateurs simples pour objectiver les progrès et décider ensemble.</p>
+      </div>
+      <div class="pillar">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="6" width="18" height="13" rx="3"/><path d="M8 12h3M9.5 10.5v3M15 11.5h.01M17 13.5h.01"/></svg></div>
+        <h3>Transmettre, par le jeu</h3>
+        <p>Ateliers et formations ludiques, coaching individuel, accompagnement de PO et de nouveaux Scrum Masters jusqu'à leur certification.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="parcours">
+  <div class="wrap">
+    <div class="head"><span class="num">02</span><h2>Parcours</h2></div>
+
+    <article class="job">
+      <div class="when">Nov. 2024 – aujourd'hui<span class="dur">2 ans · Boulogne-Billancourt</span><span class="dur">Freelance via Agi'Leroy depuis mars 2025</span></div>
+      <div>
+        <h3>Scrum Master</h3>
+        <div class="co">Renault Digital · Train Car Data (SAFe)</div>
+        <p class="ctx">Accompagnement de deux équipes data</p>
+        <ul>
+          <li>Équipe pipelines &amp; produits de données (BigQuery, Pub/Sub, Digital BackBone).</li>
+          <li>Équipe tableaux de bord Looker : transition vers Scrum, objectifs de sprint et engagement collectif.</li>
+          <li>Animation des breakout sessions du PI Planning et des rétrospectives de PIP et de PI ; participation active à la Management Review.</li>
+          <li>Coaching sur le découpage vertical du backlog : des US centrées sur un besoin métier.</li>
+          <li>Coordination inter-équipes avec le PO de la marketplace de données pour sécuriser les dates de livraison.</li>
+        </ul>
+        <div class="wins">
+          <b>Résultats</b>
+          <ul>
+            <li>Cycle time divisé par deux dans l'équipe produits de données en six mois.</li>
+            <li>Plus de 80 % des engagements tenus à chaque PI par les deux équipes.</li>
+            <li>PO accompagnée certifiée PSPO I avec 100 % de bonnes réponses.</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="job">
+      <div class="when">Mai 2021 – Oct. 2024<span class="dur">3 ans 6 mois · Marly</span></div>
+      <div>
+        <h3>Scrum Master</h3>
+        <div class="co">Lyreco Group</div>
+        <p class="ctx">Trois équipes accompagnées successivement</p>
+        <div class="sub">
+          <h4>Shared Services — API et services internes</h4>
+          <p>Équipe Kanban sollicitée par de nombreux PO : mise en place d'une priorisation commune pour donner de la visibilité et limiter les interruptions.</p>
+          <h4>Search — écosystème WebShop</h4>
+          <p>Remplacement progressif du moteur de recherche e-commerce par Algolia. Travail sur la fiabilité des estimations (Extreme Quotation, story points) : engagements tenus et dates de livraison partagées.</p>
+          <h4>Dynamics 365 — CRM des filiales</h4>
+          <p>Migration CRM et reprise des développements par une équipe interne issue de Java, avec un plan de passation suivi par matrice de compétences et un déploiement itératif pays par pays.</p>
+        </div>
+        <details class="more">
+          <summary>Et aussi…</summary>
+          <ul>
+            <li>Coaching individuel et accompagnement des nouveaux Scrum Masters.</li>
+            <li>Animation d'un échange hebdomadaire entre Scrum Masters autour de Scrum Life.</li>
+            <li>Formations et ateliers de sensibilisation à l'Agilité par le jeu ; événement de vulgarisation à l'échelle de l'entreprise.</li>
+            <li>Administration de Jira Server, Jira Cloud et Azure DevOps.</li>
+          </ul>
+        </details>
+        <div class="wins">
+          <b>Résultats</b>
+          <ul><li>Équipe Dynamics 365 autonome et poursuivant les développements après le départ des prestataires.</li></ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="job">
+      <div class="when">Juil. 2017 – Avr. 2021<span class="dur">3 ans 10 mois · Lille</span></div>
+      <div>
+        <h3>Scrum Master</h3>
+        <div class="co">Sopra Steria · Société Générale &amp; Banque de France</div>
+        <ul>
+          <li>Coordination multi-équipes et synchronisation des PI Planning dans un cadre SAFe.</li>
+          <li>Animation des événements Scrum, levée des blocages, coaching des développeurs et des PO.</li>
+          <li>Participation active à la transformation agile d'une équipe Banque de France.</li>
+          <li>Manager opérationnel d'équipes de 6 et 7 personnes.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="job">
+      <div class="when">Janv. 2018 – Déc. 2018<span class="dur">1 an · Lille</span></div>
+      <div>
+        <h3>Chef d'équipe développement</h3>
+        <div class="co">Sopra Steria · Banque de France</div>
+        <ul>
+          <li>Responsable d'application pour la Banque de France.</li>
+          <li>Relation client, préparation et animation des comités de suivi.</li>
+          <li>Support N2/N3, développements Java 7 et AngularJS.</li>
+          <li>Management d'une équipe de 6 personnes.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="job">
+      <div class="when">Juil. 2015 – Juin 2017<span class="dur">2 ans · Lille</span></div>
+      <div>
+        <h3>Ingénieur études &amp; développement J2EE</h3>
+        <div class="co">Gfi Informatique · AG2R La Mondiale</div>
+        <ul>
+          <li>Responsable d'application du pôle Rentes : organisation du travail d'une équipe de 4 selon les besoins client (évolutions, retours, MCO).</li>
+          <li>Chiffrages, spécifications techniques, développements J2EE / SQL.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="job">
+      <div class="when">Nov. 2011 – Juin 2015<span class="dur">3 ans 8 mois · Lille</span></div>
+      <div>
+        <h3>Ingénieur études &amp; développement</h3>
+        <div class="co">Gfi Informatique · Caisse d'Épargne (ITCE)</div>
+        <ul>
+          <li>Responsable de l'application « VARIO » : analyses, chiffrages, développements NSDK, cahiers de tests.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="job">
+      <div class="when">Févr. 2011 – Oct. 2011<span class="dur">9 mois · Lille</span></div>
+      <div>
+        <h3>Ingénieur études &amp; développement</h3>
+        <div class="co">NSIS · en prestation chez Gfi</div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="clients" style="padding-top:0">
+  <div class="wrap">
+    <div class="head"><span class="num">03</span><h2>Ils m'ont fait confiance</h2></div>
+    <div class="clients">
+      <figure class="client"><img src="img/renault.svg" alt="Logo Renault Digital"><figcaption>Renault Digital</figcaption></figure>
+      <figure class="client"><img src="img/lyreco.svg" alt="Logo Lyreco"><figcaption>Lyreco</figcaption></figure>
+      <figure class="client"><img src="img/sg.svg" alt="Logo Société Générale"><figcaption>Société Générale</figcaption></figure>
+      <figure class="client"><img src="img/bdf.svg" alt="Logo Banque de France"><figcaption>Banque de France</figcaption></figure>
+      <figure class="client"><img src="img/ag2r.svg" alt="Logo AG2R La Mondiale"><figcaption>AG2R La Mondiale</figcaption></figure>
+      <figure class="client"><img src="img/ce.svg" alt="Logo Caisse d'Épargne"><figcaption>Caisse d'Épargne</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="wrap">
+    <div class="head"><span class="num">04</span><h2>Certifications</h2></div>
+    <div class="certs">
+      <div class="cert"><span class="y">2025</span><span class="t">Agile Team Leadership Workshop</span><span class="o">Management 3.0</span></div>
+      <div class="cert"><span class="y">2025</span><span class="t">CCA Agile Niveau 1</span><span class="o">&nbsp;</span></div>
+      <div class="cert"><span class="y">2025</span><span class="t">Professional Scrum with Kanban (PSK)</span><span class="o">Scrum.org</span></div>
+      <div class="cert"><span class="y">2024</span><span class="t">Professional Scrum Product Owner I</span><span class="o">Scrum.org</span></div>
+      <div class="cert"><span class="y">2023</span><span class="t">Professional Scrum Master II</span><span class="o">Scrum.org</span></div>
+      <div class="cert"><span class="y">2023</span><span class="t">Gérer des projets avec la méthode Agile (GMA)</span><span class="o">&nbsp;</span></div>
+      <div class="cert"><span class="y">2020</span><span class="t">SAFe® 5 Scrum Master</span><span class="o">Scaled Agile</span></div>
+      <div class="cert"><span class="y">2020</span><span class="t">SAFe® 5 Practitioner</span><span class="o">Scaled Agile</span></div>
+      <div class="cert"><span class="y">2019</span><span class="t">Professional Scrum Master I</span><span class="o">Scrum.org</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="plus" style="padding-top:0">
+  <div class="wrap">
+    <div class="head"><span class="num">05</span><h2>En dehors des sprints</h2></div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Communauté</h3>
+        <ul>
+          <li>Agile en Seine<small>2025 · 2026</small></li>
+          <li>Agile Game Hauts-de-France<small>2024 · 2025 · 2026</small></li>
+          <li>Agi'Lille<small>2023 · 2024</small></li>
+          <li>Formation Scrum Life<small>« Deviens meilleur(e) Scrum Master » · 2022–2023</small></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Formation &amp; langues</h3>
+        <ul>
+          <li>Master Ingénierie de la chimie et des matériaux<small>UVHC · 2010</small></li>
+          <li>Bac S, mention bien<small>2004</small></li>
+          <li>Français<small>Langue maternelle</small></li>
+          <li>Anglais<small>C1 – professionnel</small></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Centres d'intérêt</h3>
+        <ul>
+          <li>Équitation<small>Mounted Games, niveau international — un vrai sport d'équipe</small></li>
+          <li>Jeux vidéo<small>…et jeux tout court, qui nourrissent mes ateliers</small></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap" id="contact">
+  <div class="contact">
+    <div>
+      <h2>Un projet, une équipe à accompagner ?</h2>
+      <p>Actuellement en mission chez Renault Digital via ma structure Agi'Leroy, je reste disponible pour échanger sur vos problématiques.</p>
+    </div>
+    <div class="acts">
+      <a class="btn primary" href="mailto:vincentleroy59199@hotmail.fr">✉&nbsp; M'écrire</a>
+      <a class="btn" href="https://www.linkedin.com/in/leroy-vincent/" target="_blank" rel="noopener">Me suivre sur LinkedIn</a>
+    </div>
+  </div>
+</div>
+
+<footer>© <span id="yr">2026</span> Vincent Leroy · Agi'Leroy</footer>
+
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('themeBtn');
+  try{var s=localStorage.getItem('theme'); if(s) root.setAttribute('data-theme',s);}catch(e){}
+  btn.addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    var next=cur==='dark'?'light':'dark'; root.setAttribute('data-theme',next);
+    try{localStorage.setItem('theme',next);}catch(e){}
+  });
+  document.getElementById('yr').textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
