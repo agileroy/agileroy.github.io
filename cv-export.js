@@ -252,7 +252,7 @@
       pageSize: 'A4',
       pageMargins: [34, 30, 34, 38],
       info: { title: 'CV – ' + cv.name, author: cv.name },
-      defaultStyle: { font: 'Roboto', fontSize: 9, color: C.ink, lineHeight: 1.17 },
+      defaultStyle: { font: 'Roboto', fontSize: 8.8, color: C.ink, lineHeight: 1.15 },
       footer: function (page, pages) {
         return { text: cv.name + ' · ' + short(cv.site) + '   —   ' + page + ' / ' + pages, alignment: 'center', fontSize: 8, color: C.muted, margin: [0, 16, 0, 0] };
       },
