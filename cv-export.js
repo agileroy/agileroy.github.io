@@ -157,7 +157,7 @@
     return {
       stack: [
         { text: title.toUpperCase(), style: 'h2' },
-        { canvas: [{ type: 'line', x1: 0, y1: 0, x2: width || 515, y2: 0, lineWidth: 0.8, lineColor: C.accent }] }
+        { canvas: [{ type: 'line', x1: 0, y1: 0, x2: width || 527, y2: 0, lineWidth: 0.8, lineColor: C.accent }] }
       ],
       margin: [0, 10, 0, 6]
     };
@@ -245,12 +245,12 @@
     var all = lang.concat(rest);
     for (var i = 0; i < all.length; i += 3) {
       var row = all.slice(i, i + 3);
-      content.push({ columns: row.map(function (c) { return cardBlock(c, 160); }), columnGap: 17, unbreakable: true });
+      content.push({ columns: row.map(function (c) { return cardBlock(c, 164); }), columnGap: 17, unbreakable: true });
     }
 
     return {
       pageSize: 'A4',
-      pageMargins: [40, 34, 40, 40],
+      pageMargins: [34, 30, 34, 38],
       info: { title: 'CV – ' + cv.name, author: cv.name },
       defaultStyle: { font: 'Roboto', fontSize: 9, color: C.ink, lineHeight: 1.17 },
       footer: function (page, pages) {
