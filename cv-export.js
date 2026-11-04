@@ -151,11 +151,11 @@
     };
   }
 
-  function pdfSection(title) {
+  function pdfSection(title, width) {
     return {
       stack: [
         { text: title.toUpperCase(), style: 'h2' },
-        { canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 0.8, lineColor: C.accent }] }
+        { canvas: [{ type: 'line', x1: 0, y1: 0, x2: width || 515, y2: 0, lineWidth: 0.8, lineColor: C.accent }] }
       ],
       margin: [0, 14, 0, 8]
     };
@@ -169,6 +169,7 @@
       ],
       columnGap: 12
     }];
+    var headDone = false;
     j.blocks.forEach(function (b) {
       if (b.type === 'intl') out.push({ text: b.text, style: 'intl' });
       else if (b.type === 'ctx') out.push({ text: b.text, style: 'ctx' });
@@ -178,6 +179,8 @@
       else if (b.type === 'team') {
         out.push({ text: b.name, style: 'team' });
         if (b.desc) out.push({ text: b.desc, margin: [0, 0, 0, 2] });
+        // l'en-tête du poste reste sur la même page que la première équipe
+        if (!headDone) { out = [{ stack: out, unbreakable: true }]; headDone = true; }
         if (b.result) out.push(pdfResult(b.result));
       }
     });
@@ -223,21 +226,28 @@
     var cards = cv.cards.slice();
     var lang = cards.filter(function (c) { return /formation/i.test(c.title); });
     var rest = cards.filter(function (c) { return !/formation/i.test(c.title); });
-    lang.concat(rest).forEach(function (card) {
-      content.push(pdfSection(card.title));
-      content.push({
-        ul: card.items.map(function (it) {
-          return { text: [{ text: it.t, bold: true }, { text: it.s ? ' — ' + it.s : '', color: C.muted }] };
-        }),
-        markerColor: C.accent
-      });
-    });
+    var cardBlock = function (card, width) {
+      return {
+        stack: [pdfSection(card.title, width), {
+          ul: card.items.map(function (it) {
+            return { text: [{ text: it.t, bold: true }, { text: it.s ? ' — ' + it.s : '', color: C.muted }] };
+          }),
+          markerColor: C.accent
+        }]
+      };
+    };
+    lang.forEach(function (card) { content.push(cardBlock(card, 515)); });
+    // les autres rubriques côte à côte, pour garder le CV compact
+    for (var i = 0; i < rest.length; i += 2) {
+      var pair = rest.slice(i, i + 2);
+      content.push({ columns: pair.map(function (c) { return cardBlock(c, 248); }), columnGap: 19 });
+    }
 
     return {
       pageSize: 'A4',
       pageMargins: [40, 40, 40, 44],
       info: { title: 'CV – ' + cv.name, author: cv.name },
-      defaultStyle: { font: 'Roboto', fontSize: 9.5, color: C.ink, lineHeight: 1.25 },
+      defaultStyle: { font: 'Roboto', fontSize: 9.5, color: C.ink, lineHeight: 1.18 },
       footer: function (page, pages) {
         return { text: cv.name + ' · ' + short(cv.site) + '   —   ' + page + ' / ' + pages, alignment: 'center', fontSize: 8, color: C.muted, margin: [0, 16, 0, 0] };
       },
