@@ -87,7 +87,7 @@
         $$('.team', el).forEach(function (t) {
           var r = $('.wins', t);
           j.blocks.push({
-            type: 'team', name: txt($('h4', t)), desc: $$(':scope > p', t).map(txt),
+            type: 'team', name: txt($('h4', t)), desc: $$(':scope > p', t).map(txt), items: items($(':scope > ul', t)),
             result: r ? { label: txt($('b', r)), items: items($('ul', r)) } : null
           });
         });
@@ -177,8 +177,9 @@
       else if (b.type === 'list') out.push({ ul: b.items.map(function (it) { return { text: pdfRuns(it) }; }), margin: [0, 2, 0, 4], markerColor: C.accent });
       else if (b.type === 'result') out.push(pdfResult(b));
       else if (b.type === 'team') {
-        out.push({ text: b.name, style: 'team' });
+        out.push({ text: b.name, style: 'lbl' });
         b.desc.forEach(function (d) { out.push({ text: d, margin: [0, 0, 0, 3] }); });
+        if (b.items.length) out.push({ ul: b.items.map(function (it) { return { text: pdfRuns(it) }; }), margin: [0, 2, 0, 2], markerColor: C.accent });
         // l'en-tête du poste reste sur la même page que la première équipe
         if (!headDone) { out = [{ stack: out, unbreakable: true }]; headDone = true; }
         if (b.result) out.push(pdfResult(b.result));
@@ -345,8 +346,9 @@
         else if (b.type === 'list') b.items.forEach(function (it) { kids.push(bullet(rich(it))); });
         else if (b.type === 'result') kids.push.apply(kids, result(b));
         else if (b.type === 'team') {
-          kids.push(new P({ spacing: { before: 120, after: 20 }, keepNext: true, children: [new T({ text: b.name, bold: true })] }));
+          kids.push(new P({ spacing: { before: 120, after: 40 }, keepNext: true, children: [new T({ text: b.name, bold: true, color: hex(C.accent) })] }));
           b.desc.forEach(function (d) { kids.push(new P({ spacing: { after: 40 }, children: [new T({ text: d })] })); });
+          b.items.forEach(function (it) { kids.push(bullet(rich(it))); });
           if (b.result) kids.push.apply(kids, result(b.result));
         }
       });

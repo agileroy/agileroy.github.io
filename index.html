@@ -115,9 +115,7 @@ section{padding:56px 0}
 .intl svg{flex:0 0 auto;margin-top:3px;color:var(--accent)}
 .sub{margin-top:6px}
 .team{margin-top:18px}
-.team h4{margin:0 0 4px;font-size:16px}
-.team>p{margin:0;color:var(--muted)}
-.team>p+p{margin-top:6px}
+.team h4{margin:0 0 6px;font-size:15px;font-weight:600;color:var(--accent);font-family:inherit}
 .wins.res{margin-top:10px;padding:10px 14px}
 .wins.res b{font-size:12px;margin-bottom:2px}
 .wins.res li{margin:3px 0}
@@ -281,15 +279,19 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
         <div class="sub">
           <div class="team">
             <h4>Pipelines &amp; produits de données</h4>
-            <p>Pipelines et produits de données mis à disposition des clients via des tables BigQuery (analytics) ou en temps réel via Pub/Sub et le Digital BackBone.</p>
-            <p>Coaching sur le découpage vertical du backlog (Elephant Carpaccio, atelier Beautiful Summer Meadow) : d'US « horizontales » sans valeur directe à des US qui couvrent toujours un besoin métier, découpées si besoin en sous-tâches techniques.</p>
+            <ul>
+              <li>Pipelines et produits de données mis à disposition des clients via des tables BigQuery (analytics) ou en temps réel via Pub/Sub et le Digital BackBone.</li>
+              <li>Coaching sur le découpage vertical du backlog (Elephant Carpaccio, atelier Beautiful Summer Meadow) : d'US « horizontales » sans valeur directe à des US qui couvrent toujours un besoin métier, découpées si besoin en sous-tâches techniques.</li>
+            </ul>
             <div class="wins res"><b>Résultat</b><ul><li>Cycle time divisé par deux en six mois.</li><li>L'équipe propose d'elle-même des découpages fonctionnels plutôt que techniques.</li></ul></div>
           </div>
           <div class="team">
             <h4>Tableaux de bord Looker</h4>
-            <p>Mise à disposition de tableaux de bord Looker pour le suivi d'indicateurs.</p>
-            <p>Transition d'un pseudo-Kanban vers Scrum : objectifs de sprint et engagement collectif.</p>
-            <p>Coaching de la PO sur la gestion de son backlog et préparation à la certification PSPO I.</p>
+            <ul>
+              <li>Mise à disposition de tableaux de bord Looker pour le suivi d'indicateurs.</li>
+              <li>Transition d'un pseudo-Kanban vers Scrum : objectifs de sprint et engagement collectif.</li>
+              <li>Coaching de la PO sur la gestion de son backlog et préparation à la certification PSPO I.</li>
+            </ul>
             <div class="wins res"><b>Résultat</b><ul><li>Plus de prévisibilité : l'équipe prend ses engagements avec confiance.</li><li>PO certifiée PSPO I avec 100 % de bonnes réponses.</li></ul></div>
           </div>
         </div>
@@ -318,22 +320,28 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
         <div class="sub">
           <div class="team">
             <h4>Shared Services — API et services internes</h4>
-            <p>Équipe transversale en Kanban, rattachée à aucun PO : elle développait les API et services demandés par plus de dix PO, avec des priorités qui changeaient sans cesse.</p>
-            <p>Mise en place d'une revue de priorisation hebdomadaire réunissant tous ces PO autour d'un backlog commun, arbitrée par le CPO.</p>
+            <ul>
+              <li>Équipe transversale en Kanban, rattachée à aucun PO : elle développait les API et services demandés par plus de dix PO, avec des priorités qui changeaient sans cesse.</li>
+              <li>Mise en place d'une revue de priorisation hebdomadaire réunissant tous ces PO autour d'un backlog commun, arbitrée par le CPO.</li>
+            </ul>
             <div class="wins res"><b>Résultat</b><ul><li>Des priorités claires, partagées et revues chaque semaine : l'équipe a de la visibilité sur son travail, les demandes « urgentes » sont traitées selon leur priorité pour l'entreprise.</li><li>Les sujets sont menés jusqu'au bout avant d'en commencer un autre, avec beaucoup moins de frustration dans l'équipe.</li></ul></div>
           </div>
           <div class="team">
             <h4>Search — écosystème WebShop</h4>
-            <p>Remplacement progressif d'un moteur de recherche « boîte noire » par Algolia, pour donner la main au marketing (paramétrage, mise en avant de produits, performance).</p>
-            <p>Composant découplé du monolithe, utilisable à la fois sur le site existant et sur sa refonte complète menée en parallèle.</p>
-            <p>Sur une roadmap ambitieuse fixée par la direction : fiabilisation des estimations (Extreme Quotation, story points) et priorisation des lots avec la PO.</p>
+            <ul>
+              <li>Remplacement progressif d'un moteur de recherche « boîte noire » par Algolia, pour donner la main au marketing (paramétrage, mise en avant de produits, performance).</li>
+              <li>Composant découplé du monolithe, utilisable à la fois sur le site existant et sur sa refonte complète menée en parallèle.</li>
+              <li>Sur une roadmap ambitieuse fixée par la direction : fiabilisation des estimations (Extreme Quotation, story points) et priorisation des lots avec la PO.</li>
+            </ul>
             <div class="wins res"><b>Résultat</b><ul><li>Roadmap tenue intégralement, en négociant les périmètres plutôt que les dates.</li><li>Migration transparente pour les utilisateurs ; la PO communique des dates réalistes, fixées avec l'équipe.</li></ul></div>
           </div>
           <div class="team">
             <h4>Dynamics 365 — CRM des filiales</h4>
-            <p>Lyreco grandit par acquisitions et chaque filiale arrive avec son propre CRM : migration vers une solution unique, Dynamics 365, par l'équipe qui maintenait jusque-là Salesforce.</p>
-            <p>Passage d'experts prestataires à une équipe interne qui passait de Java à .NET : plan de passation suivi par matrice de compétences, changement de posture (de la vélocité vers la valeur), déploiement itératif pays par pays.</p>
-            <p>Priorisation avec le PO pour tenir une roadmap très ambitieuse, et rôle de tampon face à la pression managériale pour préserver le rythme de l'équipe.</p>
+            <ul>
+              <li>Lyreco grandit par acquisitions et chaque filiale arrive avec son propre CRM : migration vers une solution unique, Dynamics 365, par l'équipe qui maintenait jusque-là Salesforce.</li>
+              <li>Passage d'experts prestataires à une équipe interne qui passait de Java à .NET : plan de passation suivi par matrice de compétences, changement de posture (de la vélocité vers la valeur), déploiement itératif pays par pays.</li>
+              <li>Priorisation avec le PO pour tenir une roadmap très ambitieuse, et rôle de tampon face à la pression managériale pour préserver le rythme de l'équipe.</li>
+            </ul>
             <div class="wins res"><b>Résultat</b><ul><li>En un an environ, passage d'une équipe 100 % prestataires à une équipe interne de 6 à 7 personnes, montée en compétence sur Dynamics 365 et .NET, autonome et qui poursuit les développements.</li></ul></div>
           </div>
         </div>
