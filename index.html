@@ -4,11 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Vincent Leroy – Scrum Master</title>
+<script>
+/* Langue : choix mémorisé, sinon langue du navigateur (français si elle est française, anglais sinon) */
+(function(){var l;try{l=localStorage.getItem('lang');}catch(e){}
+if(l!=='fr'&&l!=='en'){var n=(navigator.languages&&navigator.languages[0])||navigator.language||'en';l=/^fr\b/i.test(n)?'fr':'en';}
+document.documentElement.lang=l;})();
+</script>
 <meta name="description" content="Vincent Leroy, Scrum Master freelance (SAFe, PSM II, PSPO I, PSK I) intervenant à Lille, en Île-de-France et en Belgique. J'aide les équipes à collaborer pour livrer ce dont les utilisateurs ont vraiment besoin.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+/* Bilingue : chaque texte existe en FR et en EN, seule la langue active est affichée */
+html[lang="fr"] [data-l="en"],html[lang="en"] [data-l="fr"]{display:none!important}
 :root{
   --bg:#f7f4ee; --surface:#ffffff; --surface-2:#efeae1;
   --ink:#1c2230; --muted:#5d6475; --line:#e2dccf;
@@ -51,6 +59,13 @@ nav .wrap{display:flex;align-items:center;gap:16px;height:60px}
 @media (max-width:760px){.links{display:none}}
 .navcta{display:none;text-decoration:none;font-weight:600;font-size:14px;padding:8px 14px;border-radius:10px;background:var(--accent);color:var(--accent-ink)}
 @media (max-width:760px){.navcta{display:inline-flex}}
+.brand{white-space:nowrap}
+@media (max-width:760px){nav .wrap{gap:8px}.brand{font-size:16px}.theme{width:34px;height:34px}}
+.langs{display:flex;gap:2px;padding:3px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.langs button{display:grid;place-items:center;width:34px;height:28px;padding:0;border:0;border-radius:7px;background:none;cursor:pointer;opacity:.45;filter:grayscale(.6);transition:opacity .15s,filter .15s}
+.langs button:hover{opacity:.8;filter:none}
+.langs button[aria-pressed="true"]{opacity:1;filter:none;background:var(--surface-2)}
+.langs svg{width:22px;height:15px;border-radius:2px;box-shadow:0 0 0 1px var(--line)}
 
 /* hero */
 .hero{padding:72px 0 56px}
@@ -181,7 +196,7 @@ section{padding:56px 0}
 .contact .btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 .contact .acts{display:flex;flex-direction:column;gap:12px}
 .conds{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:8px;font-size:15px;opacity:.9}
-.conds b{display:inline-block;min-width:82px;margin-right:8px;color:var(--accent);font-weight:700}
+.conds b{display:inline-block;min-width:82px;white-space:nowrap;margin-right:8px;color:var(--accent);font-weight:700}
 @media (max-width:760px){.conds b{display:block;margin:0}}
 @media (max-width:760px){.contact{grid-template-columns:1fr;padding:30px 22px}}
 footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
@@ -203,11 +218,15 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
   <div class="wrap">
     <a class="brand" href="#top">Vincent Leroy<span>.</span></a>
     <div class="links">
-      <a href="#approche">Approche</a>
-      <a href="#parcours">Parcours</a>
+      <a href="#approche"><span data-l="fr">Approche</span><span data-l="en">Approach</span></a>
+      <a href="#parcours"><span data-l="fr">Parcours</span><span data-l="en">Experience</span></a>
       <a href="#certifications">Certifications</a>
       <a href="#contact">Contact</a>
-      <a href="/outils/">Boîte à outils</a>
+      <a href="/outils/"><span data-l="fr">Boîte à outils</span><span data-l="en">Toolbox (FR)</span></a>
+    </div>
+    <div class="langs" role="group" aria-label="Langue / Language">
+      <button type="button" data-lang="fr" title="Français" aria-label="Français"><svg viewBox="0 0 3 2" preserveAspectRatio="none" aria-hidden="true"><rect width="1" height="2" fill="#002395"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#ed2939"/></svg></button>
+      <button type="button" data-lang="en" title="English" aria-label="English"><svg viewBox="0 0 60 30" preserveAspectRatio="none" aria-hidden="true"><clipPath id="navUkS"><path d="M0,0v30h60V0z"/></clipPath><clipPath id="navUkT"><path d="M30,15h30v15zv15H0zH0V0zV0h30z"/></clipPath><g clip-path="url(#navUkS)"><path d="M0,0v30h60V0z" fill="#012169"/><path d="M0,0L60,30M60,0L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0L60,30M60,0L0,30" clip-path="url(#navUkT)" stroke="#C8102E" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#C8102E" stroke-width="6"/></g></svg></button>
     </div>
     <a class="navcta" href="#contact">Contact</a>
     <button class="theme" id="themeBtn" aria-label="Changer de thème">
@@ -219,7 +238,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
 <header class="hero" id="top">
   <div class="wrap">
     <div>
-      <span class="eyebrow">Freelance · Disponible sous 1 mois · Lille, Île-de-France &amp; Belgique</span>
+      <span class="eyebrow"><span data-l="fr">Freelance · Disponible sous 1 mois · Lille, Île-de-France &amp; Belgique</span><span data-l="en">Freelance · Available within 1 month · Lille, Paris region &amp; Belgium</span></span>
       <h1>Vincent Leroy</h1>
       <p class="role"><b>Scrum Master</b> · SAFe · PSM II · PSPO I · PSK I</p>
       <div class="hero-badges">
@@ -228,26 +247,26 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
         <a href="#certifications" title="Professional Scrum with Kanban I (Scrum.org)"><img src="img/certs/psk.png" alt="Badge PSK I"></a>
         <a href="#certifications" title="SAFe 5 Scrum Master (Scaled Agile)"><img src="img/certs/safe-sm.png" alt="Badge SAFe 5 Scrum Master"></a>
       </div>
-      <p class="pitch">Ancien développeur devenu Scrum Master, j'aide les équipes à mieux collaborer pour livrer ce dont leurs utilisateurs ont vraiment besoin — avec des résultats que l'on peut mesurer.</p>
-      <p class="sectors">Secteurs : automobile, distribution B2B, e-commerce, banque, assurance</p>
+      <p class="pitch"><span data-l="fr">Ancien développeur devenu Scrum Master, j'aide les équipes à mieux collaborer pour livrer ce dont leurs utilisateurs ont vraiment besoin — avec des résultats que l'on peut mesurer.</span><span data-l="en">Former developer turned Scrum Master, I help teams collaborate better to deliver what their users really need — with measurable results.</span></p>
+      <p class="sectors"><span data-l="fr">Secteurs : automobile, distribution B2B, e-commerce, banque, assurance</span><span data-l="en">Sectors: automotive, B2B distribution, e-commerce, banking, insurance</span></p>
       <div class="cta">
-        <a class="btn primary" href="#contact">Discutons de votre contexte</a>
+        <a class="btn primary" href="#contact"><span data-l="fr">Discutons de votre contexte</span><span data-l="en">Let's discuss your needs</span></a>
         <a class="btn" href="https://www.linkedin.com/in/leroy-vincent/" target="_blank" rel="noopener">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.3-.02-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9V21H9z"/></svg>
           LinkedIn
         </a>
         <a class="btn" href="/outils/">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg>
-          Ma boîte à outils
+          <span data-l="fr">Ma boîte à outils</span><span data-l="en">My toolbox (FR)</span>
         </a>
       </div>
       <div class="dl">
-        <span>Télécharger le CV</span>
+        <span><span data-l="fr">Télécharger le CV</span><span data-l="en">Download CV</span></span>
         <button type="button" data-export="pdf"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>PDF</button>
         <button type="button" data-export="docx"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Word</button>
       </div>
       <div class="tags">
-        <span class="tag">Scrum</span><span class="tag">Kanban</span><span class="tag">SAFe</span><span class="tag">Servant leadership</span><span class="tag">Coaching d'équipe et de PO</span><span class="tag">Facilitation</span><span class="tag">Amélioration continue</span><span class="tag">Definition of Done</span><span class="tag">Métriques agiles</span><span class="tag">Jira · Azure DevOps · Confluence</span><span class="tag">Miro · Klaxoon</span>
+        <span class="tag">Scrum</span><span class="tag">Kanban</span><span class="tag">SAFe</span><span class="tag">Servant leadership</span><span class="tag"><span data-l="fr">Coaching d'équipe et de PO</span><span data-l="en">Team &amp; PO coaching</span></span><span class="tag">Facilitation</span><span class="tag"><span data-l="fr">Amélioration continue</span><span data-l="en">Continuous improvement</span></span><span class="tag">Definition of Done</span><span class="tag"><span data-l="fr">Métriques agiles</span><span data-l="en">Agile metrics</span></span><span class="tag">Jira · Azure DevOps · Confluence</span><span class="tag">Miro · Klaxoon</span>
       </div>
     </div>
     <div class="photo"><img src="img/photo.svg" alt="Portrait de Vincent Leroy"></div>
@@ -256,32 +275,32 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
 
 <div class="wrap">
   <div class="stats">
-    <div class="stat"><div class="n">÷2</div><div class="l">Cycle time des US d'une équipe data : de 30 à moins de 15 jours ouvrés en 6 mois</div></div>
-    <div class="stat"><div class="n">80 %+</div><div class="l">De la valeur métier planifiée livrée à chaque PI, depuis un an et demi</div></div>
-    <div class="stat"><div class="n">8 ans</div><div class="l">En tant que Scrum Master, après 6 ans de développement</div></div>
-    <div class="stat"><div class="n">9</div><div class="l">Certifications Agile (Scrum.org, SAFe, Management 3.0…)</div></div>
+    <div class="stat"><div class="n">÷2</div><div class="l"><span data-l="fr">Cycle time des US d'une équipe data : de 30 à moins de 15 jours ouvrés en 6 mois</span><span data-l="en">User story cycle time for a data team: from 30 to under 15 working days in 6 months</span></div></div>
+    <div class="stat"><div class="n"><span data-l="fr">80 %+</span><span data-l="en">80%+</span></div><div class="l"><span data-l="fr">De la valeur métier planifiée livrée à chaque PI, depuis un an et demi</span><span data-l="en">Of planned business value delivered every PI, for the past 18 months</span></div></div>
+    <div class="stat"><div class="n"><span data-l="fr">8 ans</span><span data-l="en">8 years</span></div><div class="l"><span data-l="fr">En tant que Scrum Master, après 6 ans de développement</span><span data-l="en">As a Scrum Master, after 6 years in software development</span></div></div>
+    <div class="stat"><div class="n">9</div><div class="l"><span data-l="fr">Certifications Agile (Scrum.org, SAFe, Management 3.0…)</span><span data-l="en">Agile certifications (Scrum.org, SAFe, Management 3.0…)</span></div></div>
   </div>
 </div>
 
 <section id="approche">
   <div class="wrap">
-    <div class="head"><span class="num">01</span><h2>Ma façon d'accompagner</h2></div>
-    <p class="lead">Mon passé de développeur me permet de comprendre les contraintes techniques des équipes ; mon rôle de Scrum Master, de les aider à les dépasser ensemble.</p>
+    <div class="head"><span class="num">01</span><h2><span data-l="fr">Ma façon d'accompagner</span><span data-l="en">How I work with teams</span></h2></div>
+    <p class="lead"><span data-l="fr">Mon passé de développeur me permet de comprendre les contraintes techniques des équipes ; mon rôle de Scrum Master, de les aider à les dépasser ensemble.</span><span data-l="en">My background as a developer helps me understand the technical constraints teams face; my role as a Scrum Master is to help them overcome those constraints together.</span></p>
     <div class="pillars">
       <div class="pillar">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M14 20c.3-2.3 1.6-4 3.5-4s3.5 1.8 3.5 4"/></svg></div>
-        <h3>Faire collaborer</h3>
-        <p>Créer un engagement collectif autour d'objectifs de sprint clairs, et synchroniser les équipes d'un même train SAFe (Agile Release Train) et leurs Product Owners (PO).</p>
+        <h3><span data-l="fr">Faire collaborer</span><span data-l="en">Fostering collaboration</span></h3>
+        <p><span data-l="fr">Créer un engagement collectif autour d'objectifs de sprint clairs, et synchroniser les équipes d'un même train SAFe (Agile Release Train) et leurs Product Owners (PO).</span><span data-l="en">Building collective commitment around clear sprint goals, and aligning the teams of a SAFe train (Agile Release Train) and their Product Owners (POs).</span></p>
       </div>
       <div class="pillar">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
-        <h3>Mesurer pour progresser</h3>
-        <p>Cycle time, valeur métier livrée, fiabilité des estimations : des indicateurs simples pour objectiver les progrès et décider ensemble.</p>
+        <h3><span data-l="fr">Mesurer pour progresser</span><span data-l="en">Measuring to improve</span></h3>
+        <p><span data-l="fr">Cycle time, valeur métier livrée, fiabilité des estimations : des indicateurs simples pour objectiver les progrès et décider ensemble.</span><span data-l="en">Cycle time, business value delivered, estimate reliability: simple indicators to make progress visible and decide together.</span></p>
       </div>
       <div class="pillar">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="6" width="18" height="13" rx="3"/><path d="M8 12h3M9.5 10.5v3M15 11.5h.01M17 13.5h.01"/></svg></div>
-        <h3>Transmettre, par le jeu</h3>
-        <p>Ateliers et formations ludiques, coaching individuel, accompagnement de PO et de nouveaux Scrum Masters jusqu'à leur certification.</p>
+        <h3><span data-l="fr">Transmettre, par le jeu</span><span data-l="en">Teaching through play</span></h3>
+        <p><span data-l="fr">Ateliers et formations ludiques, coaching individuel, accompagnement de PO et de nouveaux Scrum Masters jusqu'à leur certification.</span><span data-l="en">Game-based workshops and training, one-on-one coaching, supporting POs and new Scrum Masters all the way to certification.</span></p>
       </div>
     </div>
   </div>
@@ -289,158 +308,158 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
 
 <section id="parcours">
   <div class="wrap">
-    <div class="head"><span class="num">02</span><h2>Parcours</h2></div>
+    <div class="head"><span class="num">02</span><h2><span data-l="fr">Parcours</span><span data-l="en">Experience</span></h2></div>
 
     <article class="job">
-      <div class="when">Nov. 2024 – aujourd'hui<span class="dur">2 ans · Boulogne-Billancourt</span><span class="dur">Portage salarial, puis freelance via Agi'Leroy depuis mars 2025</span></div>
+      <div class="when"><span data-l="fr">Nov. 2024 – aujourd'hui<span class="dur">2 ans · Boulogne-Billancourt</span><span class="dur">Portage salarial, puis freelance via Agi'Leroy depuis mars 2025</span></span><span data-l="en">Nov 2024 – present<span class="dur">2 yrs · Boulogne-Billancourt</span><span class="dur">Umbrella company, then freelance via Agi'Leroy since March 2025</span></span></div>
       <div>
         <h3>Scrum Master</h3>
-        <div class="co">Renault Digital · Agile Release Train (ART) Data, en SAFe</div>
-        <p class="intl"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span>Contexte international : anglais au quotidien pour animer ateliers, réunions et événements Scrum.</span></p>
-        <p class="ctx">Accompagnement de deux équipes data</p>
+        <div class="co"><span data-l="fr">Renault Digital · Agile Release Train (ART) Data, en SAFe</span><span data-l="en">Renault Digital · Agile Release Train (ART) Data, SAFe</span></div>
+        <p class="intl"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span><span data-l="fr">Contexte international : anglais au quotidien pour animer ateliers, réunions et événements Scrum.</span><span data-l="en">International context: English used daily to run workshops, meetings and Scrum events.</span></span></p>
+        <p class="ctx"><span data-l="fr">Accompagnement de deux équipes data</span><span data-l="en">Supporting two data teams</span></p>
         <div class="sub">
           <div class="team">
-            <h4>Pipelines &amp; produits de données</h4>
+            <h4><span data-l="fr">Pipelines &amp; produits de données</span><span data-l="en">Data pipelines &amp; products</span></h4>
             <ul>
-              <li>Pipelines et produits de données mis à disposition des clients via des tables BigQuery (analytics) ou en temps réel via Pub/Sub et le bus d'événements interne.</li>
-              <li>Coaching sur le découpage vertical du backlog (Elephant Carpaccio, atelier Beautiful Summer Meadow) : de User Stories (US) « horizontales » sans valeur directe à des US qui couvrent toujours un besoin métier, découpées si besoin en sous-tâches techniques.</li>
-              <li>Revue de la Definition of Done (DoD) avec l'équipe : les tests d'une équipe externe restent dans la DoD du train, mais ne bloquent plus la validation des US alors que nos propres tests sont au vert. D'où un cycle time suivi à deux niveaux : US (équipe) et feature (tests externes compris).</li>
+              <li><span data-l="fr">Pipelines et produits de données mis à disposition des clients via des tables BigQuery (analytics) ou en temps réel via Pub/Sub et le bus d'événements interne.</span><span data-l="en">Data pipelines and products made available to clients through BigQuery tables (analytics) or in real time via Pub/Sub and the internal event bus.</span></li>
+              <li><span data-l="fr">Coaching sur le découpage vertical du backlog (Elephant Carpaccio, atelier Beautiful Summer Meadow) : de User Stories (US) « horizontales » sans valeur directe à des US qui couvrent toujours un besoin métier, découpées si besoin en sous-tâches techniques.</span><span data-l="en">Coaching on vertical backlog slicing (Elephant Carpaccio, Beautiful Summer Meadow workshop): from “horizontal” user stories with no direct value to stories that always address a business need, split into technical sub-tasks when needed.</span></li>
+              <li><span data-l="fr">Revue de la Definition of Done (DoD) avec l'équipe : les tests d'une équipe externe restent dans la DoD du train, mais ne bloquent plus la validation des US alors que nos propres tests sont au vert. D'où un cycle time suivi à deux niveaux : US (équipe) et feature (tests externes compris).</span><span data-l="en">Definition of Done (DoD) review with the team: an external team's tests remain in the train's DoD, but no longer block story acceptance once our own tests are green. Hence cycle time is tracked at two levels: story (team) and feature (including external tests).</span></li>
             </ul>
-            <div class="wins res"><b>Résultat</b><ul><li>Cycle time des US passé de 30 à moins de 15 jours ouvrés en six mois ; cible : 10 jours ouvrés, soit un sprint.</li><li>Cycle time des features dans la cible de 20 semaines fixée par Renault.</li><li>L'équipe propose d'elle-même des découpages fonctionnels plutôt que techniques.</li></ul></div>
+            <div class="wins res"><b><span data-l="fr">Résultat</span><span data-l="en">Result</span></b><ul><li><span data-l="fr">Cycle time des US passé de 30 à moins de 15 jours ouvrés en six mois ; cible : 10 jours ouvrés, soit un sprint.</span><span data-l="en">Story cycle time down from 30 to under 15 working days in six months; target: 10 working days, i.e. one sprint.</span></li><li><span data-l="fr">Cycle time des features dans la cible de 20 semaines fixée par Renault.</span><span data-l="en">Feature cycle time within the 20-week target set by Renault.</span></li><li><span data-l="fr">L'équipe propose d'elle-même des découpages fonctionnels plutôt que techniques.</span><span data-l="en">The team now proposes functional rather than technical slicing on its own.</span></li></ul></div>
           </div>
           <div class="team">
-            <h4>Tableaux de bord Looker</h4>
+            <h4><span data-l="fr">Tableaux de bord Looker</span><span data-l="en">Looker dashboards</span></h4>
             <ul>
-              <li>Mise à disposition de tableaux de bord Looker pour le suivi d'indicateurs.</li>
-              <li>Transition d'un pseudo-Kanban vers Scrum : objectifs de sprint et engagement collectif.</li>
-              <li>Coaching de la PO sur la gestion de son backlog et préparation à la certification PSPO I.</li>
+              <li><span data-l="fr">Mise à disposition de tableaux de bord Looker pour le suivi d'indicateurs.</span><span data-l="en">Delivering Looker dashboards to monitor indicators.</span></li>
+              <li><span data-l="fr">Transition d'un pseudo-Kanban vers Scrum : objectifs de sprint et engagement collectif.</span><span data-l="en">Transition from pseudo-Kanban to Scrum: sprint goals and collective commitment.</span></li>
+              <li><span data-l="fr">Coaching de la PO sur la gestion de son backlog et préparation à la certification PSPO I.</span><span data-l="en">Coaching the PO on backlog management and preparing her for the PSPO I certification.</span></li>
             </ul>
-            <div class="wins res"><b>Résultat</b><ul><li>Plus de prévisibilité : l'équipe prend ses engagements avec confiance.</li><li>PO certifiée PSPO I avec 100 % de bonnes réponses.</li></ul></div>
+            <div class="wins res"><b><span data-l="fr">Résultat</span><span data-l="en">Result</span></b><ul><li><span data-l="fr">Plus de prévisibilité : l'équipe prend ses engagements avec confiance.</span><span data-l="en">Greater predictability: the team makes its commitments with confidence.</span></li><li><span data-l="fr">PO certifiée PSPO I avec 100 % de bonnes réponses.</span><span data-l="en">PO certified PSPO I with a 100% score.</span></li></ul></div>
           </div>
         </div>
-        <p class="lbl">À l'échelle du train</p>
+        <p class="lbl"><span data-l="fr">À l'échelle du train</span><span data-l="en">Across the train</span></p>
         <ul>
-          <li>Facilitation des événements Scrum des deux équipes : Daily, Sprint Planning, Refinement, Sprint Review et Rétrospective ; ateliers sur Klaxoon, documentation sur Confluence.</li>
-          <li>PI Planning : animation des breakout sessions et participation active à la Management Review.</li>
-          <li>Animation de deux rétrospectives à l'échelle du train : celle du PI Planning, à la fin de l'événement, et celle du PI, lors de l'Inspect &amp; Adapt.</li>
-          <li>Comptes rendus lors des ART Sync, les synchronisations entre les équipes du train.</li>
-          <li>Collaboration étroite avec le PO de la System Team, l'équipe DevOps dédiée du train : priorisation des demandes de mes équipes face à celles des autres équipes.</li>
-          <li>Gestion des dépendances avec le PO de l'équipe qui commercialise les données sur la marketplace : synchronisation des dates de livraison pendant le PI Planning, puis alerte dès qu'une dérive menace son planning en cours de PI.</li>
-          <li>Animation de la gestion des bugs du train, reprise après le départ d'un PM : pré-qualification, affectation à la bonne équipe, suivi hebdomadaire avec les PO du train, et échanges avec les clients pour obtenir les informations manquantes et les tenir informés des jalons de résolution.</li>
-          <li>Coaching des équipes pour passer d'une logique de « feature factory » à la création de valeur.</li>
-          <li>Suivi du cycle time, au niveau des US et des features, pour objectiver les progrès et nourrir l'amélioration continue.</li>
+          <li><span data-l="fr">Facilitation des événements Scrum des deux équipes : Daily, Sprint Planning, Refinement, Sprint Review et Rétrospective ; ateliers sur Klaxoon, documentation sur Confluence.</span><span data-l="en">Facilitating both teams' Scrum events: Daily Scrum, Sprint Planning, Refinement, Sprint Review and Retrospective; workshops on Klaxoon, documentation in Confluence.</span></li>
+          <li><span data-l="fr">PI Planning : animation des breakout sessions et participation active à la Management Review.</span><span data-l="en">PI Planning: running breakout sessions and actively contributing to the Management Review.</span></li>
+          <li><span data-l="fr">Animation de deux rétrospectives à l'échelle du train : celle du PI Planning, à la fin de l'événement, et celle du PI, lors de l'Inspect &amp; Adapt.</span><span data-l="en">Facilitating two train-level retrospectives: the PI Planning retrospective, at the end of the event, and the PI retrospective, during Inspect &amp; Adapt.</span></li>
+          <li><span data-l="fr">Comptes rendus lors des ART Sync, les synchronisations entre les équipes du train.</span><span data-l="en">Reporting at ART Syncs, the synchronization meetings between the train's teams.</span></li>
+          <li><span data-l="fr">Collaboration étroite avec le PO de la System Team, l'équipe DevOps dédiée du train : priorisation des demandes de mes équipes face à celles des autres équipes.</span><span data-l="en">Close collaboration with the PO of the System Team, the train's dedicated DevOps team: prioritizing my teams' requests against those of the other teams.</span></li>
+          <li><span data-l="fr">Gestion des dépendances avec le PO de l'équipe qui commercialise les données sur la marketplace : synchronisation des dates de livraison pendant le PI Planning, puis alerte dès qu'une dérive menace son planning en cours de PI.</span><span data-l="en">Managing dependencies with the PO of the team that sells the data on the marketplace: aligning delivery dates during PI Planning, then raising an alert as soon as a slippage threatens their plan during the PI.</span></li>
+          <li><span data-l="fr">Animation de la gestion des bugs du train, reprise après le départ d'un PM : pré-qualification, affectation à la bonne équipe, suivi hebdomadaire avec les PO du train, et échanges avec les clients pour obtenir les informations manquantes et les tenir informés des jalons de résolution.</span><span data-l="en">Running the train's bug management, taken over after a PM left: triage, assignment to the right team, weekly follow-up with the train's POs, and liaising with clients to obtain missing information and keep them informed of resolution milestones.</span></li>
+          <li><span data-l="fr">Coaching des équipes pour passer d'une logique de « feature factory » à la création de valeur.</span><span data-l="en">Coaching the teams to move from a “feature factory” mindset to value creation.</span></li>
+          <li><span data-l="fr">Suivi du cycle time, au niveau des US et des features, pour objectiver les progrès et nourrir l'amélioration continue.</span><span data-l="en">Tracking cycle time, at story and feature level, to make progress visible and fuel continuous improvement.</span></li>
         </ul>
         <div class="wins">
-          <b>Résultat</b>
+          <b><span data-l="fr">Résultat</span><span data-l="en">Result</span></b>
           <ul>
-            <li>Plus de 80 % de la valeur métier planifiée livrée à chaque PI par les deux équipes, depuis un an et demi.</li>
-            <li>Backlog de bugs du train passé de 35 à 5 bugs ouverts en 3 mois : 50 résolus pour 20 nouveaux signalements.</li>
+            <li><span data-l="fr">Plus de 80 % de la valeur métier planifiée livrée à chaque PI par les deux équipes, depuis un an et demi.</span><span data-l="en">Over 80% of planned business value delivered every PI by both teams, for the past 18 months.</span></li>
+            <li><span data-l="fr">Backlog de bugs du train passé de 35 à 5 bugs ouverts en 3 mois : 50 résolus pour 20 nouveaux signalements.</span><span data-l="en">Train bug backlog down from 35 to 5 open bugs in 3 months: 50 resolved vs 20 newly reported.</span></li>
           </ul>
         </div>
       </div>
     </article>
 
     <article class="job">
-      <div class="when">Mai 2021 – Oct. 2024<span class="dur">3 ans 6 mois · Valenciennes</span></div>
+      <div class="when"><span data-l="fr">Mai 2021 – Oct. 2024<span class="dur">3 ans 6 mois · Valenciennes</span></span><span data-l="en">May 2021 – Oct 2024<span class="dur">3 yrs 6 mths · Valenciennes</span></span></div>
       <div>
         <h3>Scrum Master</h3>
         <div class="co">Lyreco Group</div>
-        <p class="intl"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span>Contexte international : anglais au quotidien pour animer ateliers, réunions et événements Scrum.</span></p>
-        <p class="ctx">Trois équipes accompagnées : Shared Services, puis Shared Services et Search, puis Search et Dynamics 365</p>
+        <p class="intl"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span><span data-l="fr">Contexte international : anglais au quotidien pour animer ateliers, réunions et événements Scrum.</span><span data-l="en">International context: English used daily to run workshops, meetings and Scrum events.</span></span></p>
+        <p class="ctx"><span data-l="fr">Trois équipes accompagnées : Shared Services, puis Shared Services et Search, puis Search et Dynamics 365</span><span data-l="en">Three teams supported: Shared Services, then Shared Services and Search, then Search and Dynamics 365</span></p>
         <div class="sub">
           <div class="team">
-            <h4>Shared Services — API et services internes</h4>
+            <h4><span data-l="fr">Shared Services — API et services internes</span><span data-l="en">Shared Services — APIs and internal services</span></h4>
             <ul>
-              <li>Équipe transversale en Kanban, rattachée à aucun PO : elle développait les API et services demandés par plus de dix PO, avec des priorités qui changeaient sans cesse.</li>
-              <li>Mise en place d'une revue de priorisation hebdomadaire réunissant tous ces PO autour d'un backlog commun, arbitrée par le Chief Product Owner (CPO).</li>
+              <li><span data-l="fr">Équipe transversale en Kanban, rattachée à aucun PO : elle développait les API et services demandés par plus de dix PO, avec des priorités qui changeaient sans cesse.</span><span data-l="en">Shared Kanban team not attached to any PO: it built the APIs and services requested by more than ten POs, with constantly shifting priorities.</span></li>
+              <li><span data-l="fr">Mise en place d'une revue de priorisation hebdomadaire réunissant tous ces PO autour d'un backlog commun, arbitrée par le Chief Product Owner (CPO).</span><span data-l="en">Setting up a weekly prioritization review bringing all these POs together around a shared backlog, with the Chief Product Owner (CPO) making the final call.</span></li>
             </ul>
-            <div class="wins res"><b>Résultat</b><ul><li>Des priorités claires, partagées et revues chaque semaine : l'équipe a de la visibilité sur son travail, les demandes « urgentes » sont traitées selon leur priorité pour l'entreprise.</li><li>Les sujets sont menés jusqu'au bout avant d'en commencer un autre, avec beaucoup moins de frustration dans l'équipe.</li></ul></div>
+            <div class="wins res"><b><span data-l="fr">Résultat</span><span data-l="en">Result</span></b><ul><li><span data-l="fr">Des priorités claires, partagées et revues chaque semaine : l'équipe a de la visibilité sur son travail, les demandes « urgentes » sont traitées selon leur priorité pour l'entreprise.</span><span data-l="en">Clear priorities, shared and reviewed every week: the team has visibility on its work, and “urgent” requests are handled according to their priority for the company.</span></li><li><span data-l="fr">Les sujets sont menés jusqu'au bout avant d'en commencer un autre, avec beaucoup moins de frustration dans l'équipe.</span><span data-l="en">Work is finished before new work is started, with much less frustration in the team.</span></li></ul></div>
           </div>
           <div class="team">
-            <h4>Search — écosystème WebShop</h4>
+            <h4><span data-l="fr">Search — écosystème WebShop</span><span data-l="en">Search — WebShop ecosystem</span></h4>
             <ul>
-              <li>Remplacement progressif d'un moteur de recherche « boîte noire » par Algolia, pour donner la main au marketing (paramétrage, mise en avant de produits, performance).</li>
-              <li>Composant découplé du monolithe, utilisable à la fois sur le site existant et sur sa refonte complète menée en parallèle.</li>
-              <li>Sur une roadmap ambitieuse fixée par la direction : fiabilisation des estimations (Extreme Quotation, story points, suivi de la vélocité) et priorisation des lots avec la PO.</li>
+              <li><span data-l="fr">Remplacement progressif d'un moteur de recherche « boîte noire » par Algolia, pour donner la main au marketing (paramétrage, mise en avant de produits, performance).</span><span data-l="en">Gradual replacement of a “black box” search engine with Algolia, giving marketing control (configuration, product boosting, performance).</span></li>
+              <li><span data-l="fr">Composant découplé du monolithe, utilisable à la fois sur le site existant et sur sa refonte complète menée en parallèle.</span><span data-l="en">Component decoupled from the monolith, usable both on the existing site and on its complete rebuild carried out in parallel.</span></li>
+              <li><span data-l="fr">Sur une roadmap ambitieuse fixée par la direction : fiabilisation des estimations (Extreme Quotation, story points, suivi de la vélocité) et priorisation des lots avec la PO.</span><span data-l="en">Against an ambitious roadmap set by senior management: making estimates reliable (Extreme Quotation, story points, velocity tracking) and prioritizing delivery batches with the PO.</span></li>
             </ul>
-            <div class="wins res"><b>Résultat</b><ul><li>Roadmap tenue intégralement, en négociant les périmètres plutôt que les dates.</li><li>Migration transparente pour les utilisateurs ; la PO communique des dates réalistes, fixées avec l'équipe.</li></ul></div>
+            <div class="wins res"><b><span data-l="fr">Résultat</span><span data-l="en">Result</span></b><ul><li><span data-l="fr">Roadmap tenue intégralement, en négociant les périmètres plutôt que les dates.</span><span data-l="en">Roadmap delivered in full, by negotiating scope rather than dates.</span></li><li><span data-l="fr">Migration transparente pour les utilisateurs ; la PO communique des dates réalistes, fixées avec l'équipe.</span><span data-l="en">Seamless migration for users; the PO communicates realistic dates, agreed with the team.</span></li></ul></div>
           </div>
           <div class="team">
-            <h4>Dynamics 365 — CRM des filiales</h4>
+            <h4><span data-l="fr">Dynamics 365 — CRM des filiales</span><span data-l="en">Dynamics 365 — subsidiaries' CRM</span></h4>
             <ul>
-              <li>Lyreco grandit par acquisitions et chaque filiale arrive avec son propre CRM : migration vers une solution unique, Dynamics 365, par l'équipe qui maintenait jusque-là Salesforce.</li>
-              <li>Passage d'experts prestataires à une équipe interne qui passait de Java à .NET : plan de passation suivi par matrice de compétences, changement de posture (de la vélocité vers la valeur), déploiement itératif pays par pays.</li>
-              <li>Priorisation avec le PO pour tenir une roadmap très ambitieuse, et rôle de tampon face à la pression managériale pour préserver le rythme de l'équipe.</li>
+              <li><span data-l="fr">Lyreco grandit par acquisitions et chaque filiale arrive avec son propre CRM : migration vers une solution unique, Dynamics 365, par l'équipe qui maintenait jusque-là Salesforce.</span><span data-l="en">Lyreco grows through acquisitions and each subsidiary arrives with its own CRM: migration to a single solution, Dynamics 365, by the team that had been maintaining Salesforce.</span></li>
+              <li><span data-l="fr">Passage d'experts prestataires à une équipe interne qui passait de Java à .NET : plan de passation suivi par matrice de compétences, changement de posture (de la vélocité vers la valeur), déploiement itératif pays par pays.</span><span data-l="en">Handover from expert contractors to an in-house team moving from Java to .NET: handover plan tracked with a skills matrix, mindset shift (from velocity to value), iterative country-by-country rollout.</span></li>
+              <li><span data-l="fr">Priorisation avec le PO pour tenir une roadmap très ambitieuse, et rôle de tampon face à la pression managériale pour préserver le rythme de l'équipe.</span><span data-l="en">Prioritizing with the PO to meet a very ambitious roadmap, and acting as a buffer against management pressure to protect the team's pace.</span></li>
             </ul>
-            <div class="wins res"><b>Résultat</b><ul><li>En un an environ, passage d'une équipe 100 % prestataires à une équipe interne de 6 à 7 personnes, montée en compétence sur Dynamics 365 et .NET, autonome et qui poursuit les développements.</li></ul></div>
+            <div class="wins res"><b><span data-l="fr">Résultat</span><span data-l="en">Result</span></b><ul><li><span data-l="fr">En un an environ, passage d'une équipe 100 % prestataires à une équipe interne de 6 à 7 personnes, montée en compétence sur Dynamics 365 et .NET, autonome et qui poursuit les développements.</span><span data-l="en">In about a year, from a 100% contractor team to an autonomous in-house team of 6 to 7 people, upskilled on Dynamics 365 and .NET and carrying development forward.</span></li></ul></div>
           </div>
         </div>
         <div class="also">
-          <p class="lbl">Et aussi</p>
+          <p class="lbl"><span data-l="fr">Et aussi</span><span data-l="en">Also</span></p>
           <ul>
-            <li>Coaching individuel d'une Scrum Master débutante, ancienne cheffe de projet et formatrice : passage d'une posture de sachant à une posture de facilitation, qui laisse l'équipe faire émerger ses problèmes. <strong>Certification PSM I et prise de poste de Scrum Master.</strong></li>
-            <li>Animation d'un échange hebdomadaire entre les 5 Scrum Masters : visionnage d'une vidéo Scrum Life comme veille Agile, comparaison avec notre quotidien, puis discussion libre sur nos difficultés. <strong>Une vraie communauté, plus d'entraide et des problèmes résolus plus vite ensemble.</strong></li>
-            <li>Facilitation des événements Scrum ou Kanban selon l'équipe (Daily, Sprint Planning, Refinement, Sprint Review, Rétrospective, revues de priorisation) ; ateliers sur Miro, documentation sur Confluence.</li>
-            <li>Formations et ateliers de sensibilisation à l'Agilité par le jeu ; événement de vulgarisation à l'échelle de l'entreprise.</li>
-            <li>Administration de Jira Server, Jira Cloud et Azure DevOps.</li>
+            <li><span data-l="fr">Coaching individuel d'une Scrum Master débutante, ancienne cheffe de projet et formatrice : passage d'une posture de sachant à une posture de facilitation, qui laisse l'équipe faire émerger ses problèmes. <strong>Certification PSM I et prise de poste de Scrum Master.</strong></span><span data-l="en">One-on-one coaching of a new Scrum Master, formerly a project manager and trainer: shifting from an expert stance to a facilitation stance that lets the team surface its own problems. <strong>PSM I certification and appointment as Scrum Master.</strong></span></li>
+            <li><span data-l="fr">Animation d'un échange hebdomadaire entre les 5 Scrum Masters : visionnage d'une vidéo Scrum Life comme veille Agile, comparaison avec notre quotidien, puis discussion libre sur nos difficultés. <strong>Une vraie communauté, plus d'entraide et des problèmes résolus plus vite ensemble.</strong></span><span data-l="en">Running a weekly exchange between the 5 Scrum Masters: watching a Scrum Life video to keep up with Agile practice, comparing it with our day-to-day work, then open discussion of our challenges. <strong>A true community, more mutual support, and problems solved faster together.</strong></span></li>
+            <li><span data-l="fr">Facilitation des événements Scrum ou Kanban selon l'équipe (Daily, Sprint Planning, Refinement, Sprint Review, Rétrospective, revues de priorisation) ; ateliers sur Miro, documentation sur Confluence.</span><span data-l="en">Facilitating Scrum or Kanban events depending on the team (Daily Scrum, Sprint Planning, Refinement, Sprint Review, Retrospective, prioritization reviews); workshops on Miro, documentation in Confluence.</span></li>
+            <li><span data-l="fr">Formations et ateliers de sensibilisation à l'Agilité par le jeu ; événement de vulgarisation à l'échelle de l'entreprise.</span><span data-l="en">Game-based Agile awareness training and workshops; a company-wide event to make Agile accessible to all.</span></li>
+            <li><span data-l="fr">Administration de Jira Server, Jira Cloud et Azure DevOps.</span><span data-l="en">Administration of Jira Server, Jira Cloud and Azure DevOps.</span></li>
           </ul>
         </div>
       </div>
     </article>
 
     <article class="job">
-      <div class="when">Janv. 2019 – Avr. 2021<span class="dur">2 ans 4 mois · Lille</span></div>
+      <div class="when"><span data-l="fr">Janv. 2019 – Avr. 2021<span class="dur">2 ans 4 mois · Lille</span></span><span data-l="en">Jan 2019 – Apr 2021<span class="dur">2 yrs 4 mths · Lille</span></span></div>
       <div>
         <h3>Scrum Master</h3>
         <div class="co">Sopra Steria · Banque de France &amp; Société Générale</div>
         <div class="sub">
           <div class="team">
-            <h4>Banque de France — transformation agile</h4>
+            <h4><span data-l="fr">Banque de France — transformation agile</span><span data-l="en">Banque de France — Agile transformation</span></h4>
             <ul>
-              <li>Passage d'un engagement de résultat (cycle en V) à un engagement de moyens : mise à disposition d'une équipe Scrum.</li>
-              <li>Formation de l'équipe et du client à Scrum ; rôle moteur dans la transformation.</li>
-              <li>Refonte complète du parcours de prise de rendez-vous de la Banque de France.</li>
+              <li><span data-l="fr">Passage d'un engagement de résultat (cycle en V) à un engagement de moyens : mise à disposition d'une équipe Scrum.</span><span data-l="en">Shift from a fixed-price, fixed-scope contract (V-model) to a time-and-materials model: providing a dedicated Scrum team.</span></li>
+              <li><span data-l="fr">Formation de l'équipe et du client à Scrum ; rôle moteur dans la transformation.</span><span data-l="en">Training the team and the client in Scrum; acting as a driving force in the transformation.</span></li>
+              <li><span data-l="fr">Refonte complète du parcours de prise de rendez-vous de la Banque de France.</span><span data-l="en">Complete redesign of the Banque de France's appointment booking journey.</span></li>
             </ul>
-            <div class="wins res"><b>Résultat</b><ul><li>Meilleure collaboration et beaucoup moins de tensions entre client et fournisseur.</li></ul></div>
+            <div class="wins res"><b><span data-l="fr">Résultat</span><span data-l="en">Result</span></b><ul><li><span data-l="fr">Meilleure collaboration et beaucoup moins de tensions entre client et fournisseur.</span><span data-l="en">Better collaboration and far less tension between client and supplier.</span></li></ul></div>
           </div>
           <div class="team">
-            <h4>Société Générale — Gestion Électronique des Documents (GED)</h4>
+            <h4><span data-l="fr">Société Générale — Gestion Électronique des Documents (GED)</span><span data-l="en">Société Générale — Document Management System (DMS)</span></h4>
             <ul>
-              <li>Première expérience SAFe, au sein d'une équipe déjà rodée à Scrum : coordination multi-équipes et synchronisation des PI Planning ; documentation sur Confluence.</li>
+              <li><span data-l="fr">Première expérience SAFe, au sein d'une équipe déjà rodée à Scrum : coordination multi-équipes et synchronisation des PI Planning ; documentation sur Confluence.</span><span data-l="en">First SAFe experience, in a team already well versed in Scrum: multi-team coordination and PI Planning synchronization; documentation in Confluence.</span></li>
             </ul>
           </div>
         </div>
-        <p class="lbl">Dans les deux contextes</p>
+        <p class="lbl"><span data-l="fr">Dans les deux contextes</span><span data-l="en">In both contexts</span></p>
         <ul>
-          <li>Animation des événements Scrum (Daily, Sprint Planning, Sprint Review, Rétrospective), levée des obstacles, coaching des développeurs et des PO.</li>
-          <li>Suivi de la vélocité pour rendre les livraisons prévisibles et donner des engagements fiables.</li>
-          <li>Manager hiérarchique des 7 membres de l'équipe dont j'étais Scrum Master, rôle hérité en tant que plus senior et seul volontaire : objectifs annuels, suivi, défense des augmentations, entretiens annuels. Instances managériales dédiées, et posture de facilitation en retrait pendant les événements Scrum.</li>
+          <li><span data-l="fr">Animation des événements Scrum (Daily, Sprint Planning, Sprint Review, Rétrospective), levée des obstacles, coaching des développeurs et des PO.</span><span data-l="en">Facilitating Scrum events (Daily Scrum, Sprint Planning, Sprint Review, Retrospective), removing impediments, coaching developers and POs.</span></li>
+          <li><span data-l="fr">Suivi de la vélocité pour rendre les livraisons prévisibles et donner des engagements fiables.</span><span data-l="en">Tracking velocity to make deliveries predictable and commitments reliable.</span></li>
+          <li><span data-l="fr">Manager hiérarchique des 7 membres de l'équipe dont j'étais Scrum Master, rôle hérité en tant que plus senior et seul volontaire : objectifs annuels, suivi, défense des augmentations, entretiens annuels. Instances managériales dédiées, et posture de facilitation en retrait pendant les événements Scrum.</span><span data-l="en">Line manager of the 7 members of the team I served as Scrum Master, a role inherited as the most senior member and the only volunteer: annual objectives, follow-up, advocating for pay rises, annual reviews. Dedicated management meetings, and stepping back into a facilitation stance during Scrum events.</span></li>
         </ul>
       </div>
     </article>
 
     <article class="job">
-      <div class="when">Juil. 2017 – Déc. 2018<span class="dur">1 an 6 mois · Lille</span></div>
+      <div class="when"><span data-l="fr">Juil. 2017 – Déc. 2018<span class="dur">1 an 6 mois · Lille</span></span><span data-l="en">Jul 2017 – Dec 2018<span class="dur">1 yr 6 mths · Lille</span></span></div>
       <div>
-        <h3>Chef de projet</h3>
+        <h3><span data-l="fr">Chef de projet</span><span data-l="en">Project Manager</span></h3>
         <div class="co">Sopra Steria · Banque de France</div>
         <ul>
-          <li>Responsable d'application pour la Banque de France.</li>
-          <li>Relation client, préparation et animation des comités de suivi.</li>
-          <li>Support N2/N3, développements Java 7 et AngularJS.</li>
-          <li>Management d'une équipe de 6 personnes.</li>
+          <li><span data-l="fr">Responsable d'application pour la Banque de France.</span><span data-l="en">Application manager for the Banque de France.</span></li>
+          <li><span data-l="fr">Relation client, préparation et animation des comités de suivi.</span><span data-l="en">Client relationship; preparing and running progress review meetings.</span></li>
+          <li><span data-l="fr">Support N2/N3, développements Java 7 et AngularJS.</span><span data-l="en">Level 2/3 support, Java 7 and AngularJS development.</span></li>
+          <li><span data-l="fr">Management d'une équipe de 6 personnes.</span><span data-l="en">Managing a team of 6.</span></li>
         </ul>
       </div>
     </article>
 
     <article class="job">
-      <div class="when">Févr. 2011 – Juin 2017<span class="dur">6 ans · Lille</span></div>
+      <div class="when"><span data-l="fr">Févr. 2011 – Juin 2017<span class="dur">6 ans · Lille</span></span><span data-l="en">Feb 2011 – Jun 2017<span class="dur">6 yrs · Lille</span></span></div>
       <div>
-        <h3>Ingénieur études &amp; développement</h3>
-        <div class="co">Gfi Informatique (NSIS en 2011)</div>
+        <h3><span data-l="fr">Ingénieur études &amp; développement</span><span data-l="en">Software Engineer</span></h3>
+        <div class="co"><span data-l="fr">Gfi Informatique (NSIS en 2011)</span><span data-l="en">Gfi Informatique (via NSIS in 2011)</span></div>
         <ul>
-          <li>AG2R La Mondiale (2015–2017) : responsable d'application du pôle Rentes (rôle de chef de projet technique) : management d'une équipe de 4, relation directe avec le client, chiffrages et devis, développements J2EE / SQL.</li>
-          <li>Caisse d'Épargne – ITCE (2011–2015) : responsable de l'application « VARIO », développements NSDK.</li>
+          <li><span data-l="fr">AG2R La Mondiale (2015–2017) : responsable d'application du pôle Rentes (rôle de chef de projet technique) : management d'une équipe de 4, relation directe avec le client, chiffrages et devis, développements J2EE / SQL.</span><span data-l="en">AG2R La Mondiale (2015–2017): application manager for the Annuities division (technical project manager role): managing a team of 4, direct client relationship, estimates and quotes, J2EE / SQL development.</span></li>
+          <li><span data-l="fr">Caisse d'Épargne – ITCE (2011–2015) : responsable de l'application « VARIO », développements NSDK.</span><span data-l="en">Caisse d'Épargne – ITCE (2011–2015): application manager for “VARIO”, NSDK development.</span></li>
         </ul>
       </div>
     </article>
@@ -449,7 +468,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
 
 <section id="clients" style="padding-top:0">
   <div class="wrap">
-    <div class="head"><span class="num">03</span><h2>Ils m'ont fait confiance</h2></div>
+    <div class="head"><span class="num">03</span><h2><span data-l="fr">Ils m'ont fait confiance</span><span data-l="en">Clients I've worked with</span></h2></div>
     <div class="clients">
       <figure class="client"><img src="img/renault.svg" alt="Logo Renault Digital"><figcaption>Renault Digital</figcaption></figure>
       <figure class="client"><img src="img/lyreco.svg" alt="Logo Lyreco"><figcaption>Lyreco</figcaption></figure>
@@ -467,11 +486,11 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
     <div class="certs">
       <!-- Logos : déposer le fichier indiqué dans data-logo (img/certs/…). Tant qu'il est absent, le sigle data-mono s'affiche. -->
       <div class="cert"><span class="badge" data-mono="M3.0" data-logo="img/certs/management30.png"></span><div class="ct"><span class="y">2025</span><span class="t">Agile Team Leadership Workshop</span><span class="o">Management 3.0</span></div></div>
-      <div class="cert"><span class="badge" data-mono="CCA" data-logo="img/certs/cca.png"></span><div class="ct"><span class="y">2025</span><span class="t">CCA Agile Niveau 1</span><span class="o">Centre de certification Agile</span></div></div>
+      <div class="cert"><span class="badge" data-mono="CCA" data-logo="img/certs/cca.png"></span><div class="ct"><span class="y">2025</span><span class="t"><span data-l="fr">CCA Agile Niveau 1</span><span data-l="en">CCA Agile Level 1</span></span><span class="o">Centre de certification Agile</span></div></div>
       <div class="cert"><span class="badge" data-mono="PSK" data-logo="img/certs/psk.png"></span><div class="ct"><span class="y">2025</span><span class="t">Professional Scrum with Kanban I (PSK I)</span><span class="o">Scrum.org</span></div></div>
       <div class="cert"><span class="badge" data-mono="PSPO I" data-logo="img/certs/pspo1.png"></span><div class="ct"><span class="y">2024</span><span class="t">Professional Scrum Product Owner I</span><span class="o">Scrum.org</span></div></div>
       <div class="cert"><span class="badge" data-mono="PSM II" data-logo="img/certs/psm2.png"></span><div class="ct"><span class="y">2023</span><span class="t">Professional Scrum Master II</span><span class="o">Scrum.org</span></div></div>
-      <div class="cert"><span class="badge" data-mono="GMA" data-logo="img/certs/gma.png"></span><div class="ct"><span class="y">2023</span><span class="t">Gérer des projets avec la méthode Agile (GMA)</span><span class="o">Wensei by Kagilum</span></div></div>
+      <div class="cert"><span class="badge" data-mono="GMA" data-logo="img/certs/gma.png"></span><div class="ct"><span class="y">2023</span><span class="t"><span data-l="fr">Gérer des projets avec la méthode Agile (GMA)</span><span data-l="en">Managing Projects with the Agile Method (GMA)</span></span><span class="o">Wensei by Kagilum</span></div></div>
       <div class="cert"><span class="badge" data-mono="SAFe SM" data-logo="img/certs/safe-sm.png"></span><div class="ct"><span class="y">2020</span><span class="t">SAFe 5 Scrum Master</span><span class="o">Scaled Agile</span></div></div>
       <div class="cert"><span class="badge" data-mono="SAFe P" data-logo="img/certs/safe-practitioner.png"></span><div class="ct"><span class="y">2020</span><span class="t">SAFe 5 Practitioner</span><span class="o">Scaled Agile</span></div></div>
       <div class="cert"><span class="badge" data-mono="PSM I" data-logo="img/certs/psm1.png"></span><div class="ct"><span class="y">2019</span><span class="t">Professional Scrum Master I</span><span class="o">Scrum.org</span></div></div>
@@ -481,31 +500,31 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
 
 <section id="plus" style="padding-top:0">
   <div class="wrap">
-    <div class="head"><span class="num">05</span><h2>En dehors des sprints</h2></div>
+    <div class="head"><span class="num">05</span><h2><span data-l="fr">En dehors des sprints</span><span data-l="en">Beyond the sprints</span></h2></div>
     <div class="grid2">
       <div class="card">
-        <h3>Communauté</h3>
+        <h3><span data-l="fr">Communauté</span><span data-l="en">Community</span></h3>
         <ul>
           <li>Agile en Seine<small>2025 · 2026</small></li>
           <li>Agile Game Hauts-de-France<small>2024 · 2025 · 2026</small></li>
           <li>Agi'Lille<small>2023 · 2024</small></li>
-          <li>Formation Scrum Life<small>« Deviens meilleur(e) Scrum Master » · 2022–2023</small></li>
+          <li><span data-l="fr">Formation Scrum Life<small>« Deviens meilleur(e) Scrum Master » · 2022–2023</small></span><span data-l="en">Scrum Life training<small>“Deviens meilleur(e) Scrum Master” (Become a better Scrum Master) · 2022–2023</small></span></li>
         </ul>
       </div>
       <div class="card">
-        <h3>Formation &amp; langues</h3>
+        <h3><span data-l="fr">Formation &amp; langues</span><span data-l="en">Education &amp; languages</span></h3>
         <ul>
-          <li>Master Ingénierie de la chimie et des matériaux<small>UVHC · 2010</small></li>
-          <li>Bac S, mention bien<small>2004</small></li>
-          <li><svg class="flag" viewBox="0 0 3 2" aria-hidden="true"><rect width="1" height="2" fill="#002395"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#ed2939"/></svg>Français<small>Langue maternelle</small></li>
-          <li><svg class="flag" viewBox="0 0 60 30" preserveAspectRatio="none" aria-hidden="true"><clipPath id="ukS"><path d="M0,0v30h60V0z"/></clipPath><clipPath id="ukT"><path d="M30,15h30v15zv15H0zH0V0zV0h30z"/></clipPath><g clip-path="url(#ukS)"><path d="M0,0v30h60V0z" fill="#012169"/><path d="M0,0L60,30M60,0L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0L60,30M60,0L0,30" clip-path="url(#ukT)" stroke="#C8102E" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#C8102E" stroke-width="6"/></g></svg>Anglais<small>C1 – professionnel, pratique quotidienne en contexte international</small></li>
+          <li><span data-l="fr">Master Ingénierie de la chimie et des matériaux<small>UVHC · 2010</small></span><span data-l="en">Master's degree in Chemical and Materials Engineering<small>UVHC (Université de Valenciennes) · 2010</small></span></li>
+          <li><span data-l="fr">Bac S, mention bien<small>2004</small></span><span data-l="en">French Baccalaureate, science track, with high honours (mention Bien)<small>2004</small></span></li>
+          <li><svg class="flag" viewBox="0 0 3 2" aria-hidden="true"><rect width="1" height="2" fill="#002395"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#ed2939"/></svg><span data-l="fr">Français<small>Langue maternelle</small></span><span data-l="en">French<small>Native</small></span></li>
+          <li><svg class="flag" viewBox="0 0 60 30" preserveAspectRatio="none" aria-hidden="true"><clipPath id="ukS"><path d="M0,0v30h60V0z"/></clipPath><clipPath id="ukT"><path d="M30,15h30v15zv15H0zH0V0zV0h30z"/></clipPath><g clip-path="url(#ukS)"><path d="M0,0v30h60V0z" fill="#012169"/><path d="M0,0L60,30M60,0L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0L60,30M60,0L0,30" clip-path="url(#ukT)" stroke="#C8102E" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#C8102E" stroke-width="6"/></g></svg><span data-l="fr">Anglais<small>C1 – professionnel, pratique quotidienne en contexte international</small></span><span data-l="en">English<small>C1 – professional, used daily in an international context</small></span></li>
         </ul>
       </div>
       <div class="card">
-        <h3>Centres d'intérêt</h3>
+        <h3><span data-l="fr">Centres d'intérêt</span><span data-l="en">Interests</span></h3>
         <ul>
-          <li>Équitation<small>Mounted Games, niveau international — un vrai sport d'équipe</small></li>
-          <li>Jeux vidéo<small>…et jeux tout court, qui nourrissent mes ateliers</small></li>
+          <li><span data-l="fr">Équitation<small>Mounted Games, niveau international — un vrai sport d'équipe</small></span><span data-l="en">Horse riding<small>Mounted Games, international level — a true team sport</small></span></li>
+          <li><span data-l="fr">Jeux vidéo<small>…et jeux tout court, qui nourrissent mes ateliers</small></span><span data-l="en">Video games<small>…and games in general, which inspire my workshops</small></span></li>
         </ul>
       </div>
     </div>
@@ -515,18 +534,18 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
 <div class="wrap" id="contact">
   <div class="contact">
     <div>
-      <h2>Un projet, une équipe à accompagner ?</h2>
-      <p>Actuellement en mission chez Renault Digital via ma structure Agi'Leroy, je suis disponible sous un mois pour une nouvelle mission. Parlons de votre contexte.</p>
+      <h2><span data-l="fr">Un projet, une équipe à accompagner ?</span><span data-l="en">A project or a team to support?</span></h2>
+      <p><span data-l="fr">Actuellement en mission chez Renault Digital via ma structure Agi'Leroy, je suis disponible sous un mois pour une nouvelle mission. Parlons de votre contexte.</span><span data-l="en">Currently on assignment at Renault Digital through my company Agi'Leroy, I am available within one month for a new engagement. Let's talk about your needs.</span></p>
       <ul class="conds">
-        <li><b>Formats</b> Missions ponctuelles (audit, formation) ou missions longues en régie (6 mois à 3 ans)</li>
-        <li><b>Rythme</b> Hybride, 2 à 4 jours de télétravail par semaine selon la localisation, à définir avec le client</li>
-        <li><b>Structure</b> Agi'Leroy (SASU)</li>
+        <li><span data-l="fr"><b>Formats</b> Missions ponctuelles (audit, formation) ou missions longues en régie (6 mois à 3 ans)</span><span data-l="en"><b>Formats</b> Short engagements (audit, training) or long-term time-and-materials assignments (6 months to 3 years)</span></li>
+        <li><span data-l="fr"><b>Rythme</b> Hybride, 2 à 4 jours de télétravail par semaine selon la localisation, à définir avec le client</span><span data-l="en"><b>Working pattern</b> Hybrid, 2 to 4 days remote per week depending on location, to be agreed with the client</span></li>
+        <li><span data-l="fr"><b>Structure</b> Agi'Leroy (SASU)</span><span data-l="en"><b>Company</b> Agi'Leroy (SASU, French single-shareholder company)</span></li>
       </ul>
     </div>
     <div class="acts">
-      <a class="btn primary" href="mailto:vincentleroy59199@hotmail.fr">✉&nbsp; M'écrire</a>
-      <a class="btn" href="https://www.linkedin.com/in/leroy-vincent/" target="_blank" rel="noopener">Me suivre sur LinkedIn</a>
-      <div class="dl"><span>CV :</span><button type="button" data-export="pdf">PDF</button><button type="button" data-export="docx">Word</button></div>
+      <a class="btn primary" href="mailto:vincentleroy59199@hotmail.fr"><span data-l="fr">✉&nbsp; M'écrire</span><span data-l="en">✉&nbsp; Email me</span></a>
+      <a class="btn" href="https://www.linkedin.com/in/leroy-vincent/" target="_blank" rel="noopener"><span data-l="fr">Me suivre sur LinkedIn</span><span data-l="en">Follow me on LinkedIn</span></a>
+      <div class="dl"><span><span data-l="fr">CV :</span><span data-l="en">CV:</span></span><button type="button" data-export="pdf">PDF</button><button type="button" data-export="docx">Word</button></div>
     </div>
   </div>
 </div>
@@ -535,6 +554,22 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
 
 <script>
 (function(){
+  // Langue : bascule FR / EN, titre et description de la page compris
+  var META={
+    fr:{t:"Vincent Leroy – Scrum Master",d:"Vincent Leroy, Scrum Master freelance (SAFe, PSM II, PSPO I, PSK I) intervenant à Lille, en Île-de-France et en Belgique. J'aide les équipes à collaborer pour livrer ce dont les utilisateurs ont vraiment besoin."},
+    en:{t:"Vincent Leroy – Scrum Master",d:"Vincent Leroy, freelance Scrum Master (SAFe, PSM II, PSPO I, PSK I) working in Lille, the Paris region and Belgium. I help teams collaborate to deliver what their users really need."}
+  };
+  function setLang(l){
+    document.documentElement.lang=l;
+    document.title=META[l].t;
+    var md=document.querySelector('meta[name="description"]'); if(md) md.setAttribute('content',META[l].d);
+    document.querySelectorAll('.langs button').forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-lang')===l?'true':'false'); });
+  }
+  setLang(document.documentElement.lang==='en'?'en':'fr');
+  document.querySelectorAll('.langs button').forEach(function(b){
+    b.addEventListener('click',function(){ var l=b.getAttribute('data-lang'); setLang(l); try{localStorage.setItem('lang',l);}catch(e){} });
+  });
+
   var root=document.documentElement, btn=document.getElementById('themeBtn');
   try{var s=localStorage.getItem('theme'); if(s) root.setAttribute('data-theme',s);}catch(e){}
   btn.addEventListener('click',function(){
@@ -555,12 +590,12 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
   document.querySelectorAll('[data-export]').forEach(function(btn){
     btn.addEventListener('click',function(){
       var fmt=btn.getAttribute('data-export'), label=btn.innerHTML;
-      btn.disabled=true; btn.textContent='Préparation…';
+      btn.disabled=true; btn.textContent=(document.documentElement.lang==='en'?'Preparing…':'Préparation…');
       var done=function(){ btn.disabled=false; btn.innerHTML=label; };
       var go=function(){ return window.CVExport[fmt](); };
       (window.CVExport?Promise.resolve():new Promise(function(ok,ko){
         var s=document.createElement('script'); s.src='cv-export.js'; s.onload=ok; s.onerror=ko; document.head.appendChild(s);
-      })).then(go).then(done,function(e){ console.error(e); done(); alert("L'export n'a pas pu être généré. Réessayez dans un instant."); });
+      })).then(go).then(done,function(e){ console.error(e); done(); alert(document.documentElement.lang==='en'?"The CV could not be generated. Please try again in a moment.":"L'export n'a pas pu être généré. Réessayez dans un instant."); });
     });
   });
 })();

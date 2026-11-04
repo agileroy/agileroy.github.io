@@ -29,8 +29,21 @@
   /* ---------- lecture de la page ---------- */
   function clean(s) { return (s || '').replace(/\s+/g, ' ').trim(); }
   function txt(el) { return el ? clean(el.textContent) : ''; }
-  function $(sel, root) { return (root || document).querySelector(sel); }
-  function $$(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+  // La page contient chaque texte en FR et en EN : on lit une copie qui ne garde que la langue affichée
+  var DOC = document;
+  function langView() {
+    var lang = document.documentElement.lang === 'en' ? 'en' : 'fr';
+    var copy = document.body.cloneNode(true);
+    copy.querySelectorAll('[data-l]').forEach(function (n) {
+      if (n.getAttribute('data-l') !== lang) n.remove();
+      else { while (n.firstChild) n.parentNode.insertBefore(n.firstChild, n); n.remove(); }
+    });
+    return copy;
+  }
+  function colon() { return document.documentElement.lang === 'en' ? ': ' : ' : '; }
+  function fileName() { return FILE + (document.documentElement.lang === 'en' ? '-EN' : ''); }
+  function $(sel, root) { return (root || DOC).querySelector(sel); }
+  function $$(sel, root) { return Array.prototype.slice.call((root || DOC).querySelectorAll(sel)); }
 
   // Texte enrichi : [{t, b}] (b = gras pour <strong>/<b>)
   function runs(el) {
@@ -106,6 +119,8 @@
   }
 
   function readCV() {
+    DOC = langView();
+    var expTitle = txt($('#parcours h2'));
     var mail = $('a[href^="mailto:"]');
     var li = $('a[href*="linkedin.com"]');
     return {
@@ -123,7 +138,8 @@
       certs: $$('#certifications .cert').map(function (c) {
         return { y: txt($('.y', c)), t: txt($('.t', c)), o: txt($('.o', c)) };
       }),
-      cards: $$('#plus .card').map(readCard)
+      cards: $$('#plus .card').map(readCard),
+      expTitle: expTitle
     };
   }
   function short(url) { return url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''); }
@@ -205,14 +221,14 @@
       { text: cv.place, fontSize: 8.5, color: C.muted, margin: [0, 2, 0, 0] },
       { text: cv.pitch, margin: [0, 10, 0, cv.sectors ? 3 : 10] },
       cv.sectors ? { text: cv.sectors, bold: true, color: C.muted, margin: [0, 0, 0, cv.conds.length ? 4 : 10] } : '',
-      cv.conds.length ? { stack: cv.conds.map(function (c) { return { text: [{ text: c.k + ' : ', bold: true, color: C.accent }, { text: c.v }], fontSize: 8.5 }; }), margin: [0, 0, 0, 10] } : '',
+      cv.conds.length ? { stack: cv.conds.map(function (c) { return { text: [{ text: c.k + colon(), bold: true, color: C.accent }, { text: c.v }], fontSize: 8.5 }; }), margin: [0, 0, 0, 10] } : '',
       {
         columns: cv.stats.map(function (s) {
           return { stack: [{ text: s.n, style: 'statN' }, { text: s.l, style: 'statL' }] };
         }),
         columnGap: 14
       },
-      pdfSection('Parcours')
+      pdfSection(cv.expTitle)
     ];
     cv.jobs.forEach(function (j) { content.push(pdfJob(j)); });
 
@@ -229,8 +245,8 @@
     });
 
     var cards = cv.cards.slice();
-    var lang = cards.filter(function (c) { return /formation/i.test(c.title); });
-    var rest = cards.filter(function (c) { return !/formation/i.test(c.title); });
+    var lang = cards.filter(function (c) { return /formation|education/i.test(c.title); });
+    var rest = cards.filter(function (c) { return !/formation|education/i.test(c.title); });
     var cardBlock = function (card, width) {
       return {
         stack: [pdfSection(card.title, width), {
@@ -326,13 +342,13 @@
     kids.push(new P({ spacing: { after: 160 }, children: [new T({ text: cv.place, color: hex(C.muted), size: 18 })] }));
     kids.push(new P({ spacing: { after: cv.sectors ? 60 : 160 }, children: [new T({ text: cv.pitch })] }));
     if (cv.sectors) kids.push(new P({ spacing: { after: cv.conds.length ? 60 : 160 }, children: [new T({ text: cv.sectors, bold: true, color: hex(C.muted) })] }));
-    cv.conds.forEach(function (c, i) { kids.push(new P({ spacing: { after: i === cv.conds.length - 1 ? 160 : 20 }, children: [new T({ text: c.k + ' : ', bold: true, color: hex(C.accent), size: 18 }), new T({ text: c.v, size: 18 })] })); });
+    cv.conds.forEach(function (c, i) { kids.push(new P({ spacing: { after: i === cv.conds.length - 1 ? 160 : 20 }, children: [new T({ text: c.k + colon(), bold: true, color: hex(C.accent), size: 18 }), new T({ text: c.v, size: 18 })] })); });
 
     cv.stats.forEach(function (s) {
       kids.push(new P({ spacing: { after: 20 }, children: [new T({ text: s.n + '  ', bold: true, color: hex(C.accent), size: 24 }), new T({ text: s.l, color: hex(C.muted) })] }));
     });
 
-    kids.push(section('Parcours'));
+    kids.push(section(cv.expTitle));
     cv.jobs.forEach(function (j, idx) {
       kids.push(new P({
         spacing: { before: idx ? 240 : 60, after: 0 },
@@ -368,8 +384,8 @@
       }));
     });
 
-    var lang = cv.cards.filter(function (c) { return /formation/i.test(c.title); });
-    var rest = cv.cards.filter(function (c) { return !/formation/i.test(c.title); });
+    var lang = cv.cards.filter(function (c) { return /formation|education/i.test(c.title); });
+    var rest = cv.cards.filter(function (c) { return !/formation|education/i.test(c.title); });
     lang.concat(rest).forEach(function (card) {
       kids.push(section(card.title));
       card.items.forEach(function (it) {
@@ -400,13 +416,13 @@
     pdfDefinition: function () { return buildPdf(readCV()); },
     pdf: function () {
       return loadAll(LIBS.pdf).then(function () {
-        return new Promise(function (ok) { window.pdfMake.createPdf(buildPdf(readCV())).download(FILE + '.pdf', ok); });
+        return new Promise(function (ok) { window.pdfMake.createPdf(buildPdf(readCV())).download(fileName() + '.pdf', ok); });
       });
     },
     docx: function () {
       return loadAll(LIBS.docx).then(function () {
         return window.docx.Packer.toBlob(buildDocx(readCV()));
-      }).then(function (blob) { save(blob, FILE + '.docx'); });
+      }).then(function (blob) { save(blob, fileName() + '.docx'); });
     }
   };
 })();
