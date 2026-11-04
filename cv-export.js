@@ -113,6 +113,7 @@
       role: txt($('.hero .role')),
       place: txt($('.hero .eyebrow')),
       pitch: txt($('.hero .pitch')),
+      sectors: txt($('.hero .sectors')),
       email: mail ? mail.getAttribute('href').replace('mailto:', '') : '',
       linkedin: li ? li.href : '',
       site: 'https://agileroy.github.io/',
@@ -201,7 +202,8 @@
       { text: cv.role, style: 'role' },
       { text: contact, style: 'contact' },
       { text: cv.place, fontSize: 8.5, color: C.muted, margin: [0, 2, 0, 0] },
-      { text: cv.pitch, margin: [0, 10, 0, 10] },
+      { text: cv.pitch, margin: [0, 10, 0, cv.sectors ? 3 : 10] },
+      cv.sectors ? { text: cv.sectors, bold: true, color: C.muted, margin: [0, 0, 0, 10] } : '',
       {
         columns: cv.stats.map(function (s) {
           return { stack: [{ text: s.n, style: 'statN' }, { text: s.l, style: 'statL' }] };
@@ -320,7 +322,8 @@
     contact.push(new T({ text: '   ·   ' }), link(short(cv.site), cv.site));
     kids.push(new P({ spacing: { after: 0 }, children: contact }));
     kids.push(new P({ spacing: { after: 160 }, children: [new T({ text: cv.place, color: hex(C.muted), size: 18 })] }));
-    kids.push(new P({ spacing: { after: 160 }, children: [new T({ text: cv.pitch })] }));
+    kids.push(new P({ spacing: { after: cv.sectors ? 60 : 160 }, children: [new T({ text: cv.pitch })] }));
+    if (cv.sectors) kids.push(new P({ spacing: { after: 160 }, children: [new T({ text: cv.sectors, bold: true, color: hex(C.muted) })] }));
 
     cv.stats.forEach(function (s) {
       kids.push(new P({ spacing: { after: 20 }, children: [new T({ text: s.n + '  ', bold: true, color: hex(C.accent), size: 24 }), new T({ text: s.l, color: hex(C.muted) })] }));
