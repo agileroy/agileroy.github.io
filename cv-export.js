@@ -114,6 +114,7 @@
       place: txt($('.hero .eyebrow')),
       pitch: txt($('.hero .pitch')),
       sectors: txt($('.hero .sectors')),
+      conds: $$('#contact .conds li').map(function (li) { var b = $('b', li); return { k: txt(b), v: clean(li.textContent.replace(b ? b.textContent : '', '')) }; }),
       email: mail ? mail.getAttribute('href').replace('mailto:', '') : '',
       linkedin: li ? li.href : '',
       site: 'https://agileroy.github.io/',
@@ -158,7 +159,7 @@
         { text: title.toUpperCase(), style: 'h2' },
         { canvas: [{ type: 'line', x1: 0, y1: 0, x2: width || 515, y2: 0, lineWidth: 0.8, lineColor: C.accent }] }
       ],
-      margin: [0, 14, 0, 8]
+      margin: [0, 10, 0, 6]
     };
   }
 
@@ -203,7 +204,8 @@
       { text: contact, style: 'contact' },
       { text: cv.place, fontSize: 8.5, color: C.muted, margin: [0, 2, 0, 0] },
       { text: cv.pitch, margin: [0, 10, 0, cv.sectors ? 3 : 10] },
-      cv.sectors ? { text: cv.sectors, bold: true, color: C.muted, margin: [0, 0, 0, 10] } : '',
+      cv.sectors ? { text: cv.sectors, bold: true, color: C.muted, margin: [0, 0, 0, cv.conds.length ? 4 : 10] } : '',
+      cv.conds.length ? { stack: cv.conds.map(function (c) { return { text: [{ text: c.k + ' : ', bold: true, color: C.accent }, { text: c.v }], fontSize: 8.5 }; }), margin: [0, 0, 0, 10] } : '',
       {
         columns: cv.stats.map(function (s) {
           return { stack: [{ text: s.n, style: 'statN' }, { text: s.l, style: 'statL' }] };
@@ -222,7 +224,7 @@
           { width: '*', text: c.t, bold: true },
           { width: 'auto', text: c.o, color: C.muted }
         ],
-        columnGap: 8, margin: [0, 0, 0, 4]
+        columnGap: 8, margin: [0, 0, 0, 2]
       });
     });
 
@@ -239,18 +241,18 @@
         }]
       };
     };
-    lang.forEach(function (card) { content.push(cardBlock(card, 515)); });
-    // les autres rubriques côte à côte, pour garder le CV compact
-    for (var i = 0; i < rest.length; i += 2) {
-      var pair = rest.slice(i, i + 2);
-      content.push({ columns: pair.map(function (c) { return cardBlock(c, 248); }), columnGap: 19 });
+    // les dernières rubriques côte à côte, pour garder le CV compact
+    var all = lang.concat(rest);
+    for (var i = 0; i < all.length; i += 3) {
+      var row = all.slice(i, i + 3);
+      content.push({ columns: row.map(function (c) { return cardBlock(c, 160); }), columnGap: 17, unbreakable: true });
     }
 
     return {
       pageSize: 'A4',
       pageMargins: [40, 34, 40, 40],
       info: { title: 'CV – ' + cv.name, author: cv.name },
-      defaultStyle: { font: 'Roboto', fontSize: 9.2, color: C.ink, lineHeight: 1.18 },
+      defaultStyle: { font: 'Roboto', fontSize: 9, color: C.ink, lineHeight: 1.17 },
       footer: function (page, pages) {
         return { text: cv.name + ' · ' + short(cv.site) + '   —   ' + page + ' / ' + pages, alignment: 'center', fontSize: 8, color: C.muted, margin: [0, 16, 0, 0] };
       },
@@ -323,7 +325,8 @@
     kids.push(new P({ spacing: { after: 0 }, children: contact }));
     kids.push(new P({ spacing: { after: 160 }, children: [new T({ text: cv.place, color: hex(C.muted), size: 18 })] }));
     kids.push(new P({ spacing: { after: cv.sectors ? 60 : 160 }, children: [new T({ text: cv.pitch })] }));
-    if (cv.sectors) kids.push(new P({ spacing: { after: 160 }, children: [new T({ text: cv.sectors, bold: true, color: hex(C.muted) })] }));
+    if (cv.sectors) kids.push(new P({ spacing: { after: cv.conds.length ? 60 : 160 }, children: [new T({ text: cv.sectors, bold: true, color: hex(C.muted) })] }));
+    cv.conds.forEach(function (c, i) { kids.push(new P({ spacing: { after: i === cv.conds.length - 1 ? 160 : 20 }, children: [new T({ text: c.k + ' : ', bold: true, color: hex(C.accent), size: 18 }), new T({ text: c.v, size: 18 })] })); });
 
     cv.stats.forEach(function (s) {
       kids.push(new P({ spacing: { after: 20 }, children: [new T({ text: s.n + '  ', bold: true, color: hex(C.accent), size: 24 }), new T({ text: s.l, color: hex(C.muted) })] }));

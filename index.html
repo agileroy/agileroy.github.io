@@ -49,6 +49,8 @@ nav .wrap{display:flex;align-items:center;gap:16px;height:60px}
 .links a:hover{color:var(--ink)}
 .theme{border:1px solid var(--line);background:var(--surface);color:var(--ink);width:38px;height:38px;border-radius:50%;cursor:pointer;display:grid;place-items:center}
 @media (max-width:760px){.links{display:none}}
+.navcta{display:none;text-decoration:none;font-weight:600;font-size:14px;padding:8px 14px;border-radius:10px;background:var(--accent);color:var(--accent-ink)}
+@media (max-width:760px){.navcta{display:inline-flex}}
 
 /* hero */
 .hero{padding:72px 0 56px}
@@ -178,6 +180,9 @@ section{padding:56px 0}
 .contact .btn{background:transparent;color:var(--bg);border-color:color-mix(in srgb,var(--bg) 30%,transparent);justify-content:center}
 .contact .btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 .contact .acts{display:flex;flex-direction:column;gap:12px}
+.conds{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:8px;font-size:15px;opacity:.9}
+.conds b{display:inline-block;min-width:82px;margin-right:8px;color:var(--accent);font-weight:700}
+@media (max-width:760px){.conds b{display:block;margin:0}}
 @media (max-width:760px){.contact{grid-template-columns:1fr;padding:30px 22px}}
 footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
 
@@ -204,6 +209,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
       <a href="#contact">Contact</a>
       <a href="/outils/">Boîte à outils</a>
     </div>
+    <a class="navcta" href="#contact">Contact</a>
     <button class="theme" id="themeBtn" aria-label="Changer de thème">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
     </button>
@@ -220,7 +226,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
         <a href="#certifications" title="Professional Scrum Master II (Scrum.org)"><img src="img/certs/psm2.png" alt="Badge PSM II"></a>
         <a href="#certifications" title="Professional Scrum Product Owner I (Scrum.org)"><img src="img/certs/pspo1.png" alt="Badge PSPO I"></a>
         <a href="#certifications" title="Professional Scrum with Kanban I (Scrum.org)"><img src="img/certs/psk.png" alt="Badge PSK I"></a>
-        <a href="#certifications" title="SAFe® 5 Scrum Master (Scaled Agile)"><img src="img/certs/safe-sm.png" alt="Badge SAFe 5 Scrum Master"></a>
+        <a href="#certifications" title="SAFe 5 Scrum Master (Scaled Agile)"><img src="img/certs/safe-sm.png" alt="Badge SAFe 5 Scrum Master"></a>
       </div>
       <p class="pitch">Ancien développeur devenu Scrum Master, j'aide les équipes à mieux collaborer pour livrer ce dont leurs utilisateurs ont vraiment besoin — avec des résultats que l'on peut mesurer.</p>
       <p class="sectors">Secteurs : automobile, distribution B2B, banque, assurance</p>
@@ -241,7 +247,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
         <button type="button" data-export="docx"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Word</button>
       </div>
       <div class="tags">
-        <span class="tag">Scrum</span><span class="tag">Kanban</span><span class="tag">SAFe</span><span class="tag">Servant leadership</span><span class="tag">Coaching d'équipe et de PO</span><span class="tag">Facilitation</span><span class="tag">Amélioration continue</span><span class="tag">Métriques agiles</span><span class="tag">Jira · Azure DevOps · Confluence</span><span class="tag">Miro · Klaxoon</span>
+        <span class="tag">Scrum</span><span class="tag">Kanban</span><span class="tag">SAFe</span><span class="tag">Servant leadership</span><span class="tag">Coaching d'équipe et de PO</span><span class="tag">Facilitation</span><span class="tag">Amélioration continue</span><span class="tag">Definition of Done</span><span class="tag">Métriques agiles</span><span class="tag">Jira · Azure DevOps · Confluence</span><span class="tag">Miro · Klaxoon</span>
       </div>
     </div>
     <div class="photo"><img src="img/photo.svg" alt="Portrait de Vincent Leroy"></div>
@@ -265,12 +271,12 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
       <div class="pillar">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M14 20c.3-2.3 1.6-4 3.5-4s3.5 1.8 3.5 4"/></svg></div>
         <h3>Faire collaborer</h3>
-        <p>Créer un engagement collectif autour d'objectifs de sprint clairs, et synchroniser les équipes et les Product Owners (PO) quand plusieurs trains SAFe (Agile Release Trains) se croisent.</p>
+        <p>Créer un engagement collectif autour d'objectifs de sprint clairs, et synchroniser les équipes d'un même train SAFe (Agile Release Train) et leurs Product Owners (PO).</p>
       </div>
       <div class="pillar">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
         <h3>Mesurer pour progresser</h3>
-        <p>Cycle time, tenue des engagements, fiabilité des estimations : des indicateurs simples pour objectiver les progrès et décider ensemble.</p>
+        <p>Cycle time, valeur métier livrée, fiabilité des estimations : des indicateurs simples pour objectiver les progrès et décider ensemble.</p>
       </div>
       <div class="pillar">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="6" width="18" height="13" rx="3"/><path d="M8 12h3M9.5 10.5v3M15 11.5h.01M17 13.5h.01"/></svg></div>
@@ -298,6 +304,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
             <ul>
               <li>Pipelines et produits de données mis à disposition des clients via des tables BigQuery (analytics) ou en temps réel via Pub/Sub et le bus d'événements interne.</li>
               <li>Coaching sur le découpage vertical du backlog (Elephant Carpaccio, atelier Beautiful Summer Meadow) : de User Stories (US) « horizontales » sans valeur directe à des US qui couvrent toujours un besoin métier, découpées si besoin en sous-tâches techniques.</li>
+              <li>Revue de la Definition of Done (DoD) avec l'équipe : retrait de l'attente de tests par une équipe externe avant de valider une feature, alors que nos propres tests étaient déjà au vert, car elle allongeait le cycle time.</li>
             </ul>
             <div class="wins res"><b>Résultat</b><ul><li>Cycle time passé de 30 à moins de 15 jours en six mois ; objectif en cours : moins de 10 jours.</li><li>L'équipe propose d'elle-même des découpages fonctionnels plutôt que techniques.</li></ul></div>
           </div>
@@ -313,12 +320,14 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
         </div>
         <p class="lbl">À l'échelle du train</p>
         <ul>
-          <li>Facilitation des événements Scrum des deux équipes : Daily, Sprint Planning, Refinement, Sprint Review et Rétrospective, avec ateliers sur Klaxoon.</li>
-          <li>PI Planning (planification du Program Increment, ou PIP) : animation des breakout sessions, comptes rendus lors des synchronisations entre équipes (Scrum of Scrums), participation active à la Management Review ; animation des rétrospectives du PIP et du PI (Inspect &amp; Adapt).</li>
+          <li>Facilitation des événements Scrum des deux équipes : Daily, Sprint Planning, Refinement, Sprint Review et Rétrospective ; ateliers sur Klaxoon, documentation sur Confluence.</li>
+          <li>PI Planning : animation des breakout sessions et participation active à la Management Review.</li>
+          <li>Animation de deux rétrospectives à l'échelle du train : celle du PI Planning, à la fin de l'événement, et celle du PI, lors de l'Inspect &amp; Adapt.</li>
+          <li>Comptes rendus lors des ART Sync, les synchronisations entre les équipes du train.</li>
           <li>Collaboration étroite avec le PO de la System Team, l'équipe DevOps dédiée du train : priorisation des demandes de mes équipes face à celles des autres équipes.</li>
-          <li>Gestion des dépendances avec le PO de l'équipe qui commercialise les données sur la marketplace : synchronisation des dates de livraison pendant le PIP, puis alerte dès qu'une dérive menace son planning en cours de PI.</li>
+          <li>Gestion des dépendances avec le PO de l'équipe qui commercialise les données sur la marketplace : synchronisation des dates de livraison pendant le PI Planning, puis alerte dès qu'une dérive menace son planning en cours de PI.</li>
           <li>Coaching des équipes pour passer d'une logique de « feature factory » à la création de valeur.</li>
-          <li>Suivi des métriques de flux (cycle time, lead time, vélocité) pour objectiver les progrès et nourrir l'amélioration continue.</li>
+          <li>Suivi du cycle time, au niveau des US et des features, pour objectiver les progrès et nourrir l'amélioration continue.</li>
         </ul>
         <div class="wins">
           <b>Résultat</b>
@@ -369,7 +378,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
           <ul>
             <li>Coaching individuel d'une Scrum Master débutante, ancienne cheffe de projet et formatrice : passage d'une posture de sachant à une posture de facilitation, qui laisse l'équipe faire émerger ses problèmes. <strong>Certification PSM I et prise de poste de Scrum Master.</strong></li>
             <li>Animation d'un échange hebdomadaire entre les 5 Scrum Masters : visionnage d'une vidéo Scrum Life comme veille Agile, comparaison avec notre quotidien, puis discussion libre sur nos difficultés. <strong>Une vraie communauté, plus d'entraide et des problèmes résolus plus vite ensemble.</strong></li>
-            <li>Facilitation des événements Scrum (Daily, Sprint Planning, Refinement, Sprint Review, Rétrospective) et ateliers sur Miro.</li>
+            <li>Facilitation des événements Scrum ou Kanban selon l'équipe (Daily, Sprint Planning, Refinement, Sprint Review, Rétrospective, revues de priorisation) ; ateliers sur Miro, documentation sur Confluence.</li>
             <li>Formations et ateliers de sensibilisation à l'Agilité par le jeu ; événement de vulgarisation à l'échelle de l'entreprise.</li>
             <li>Administration de Jira Server, Jira Cloud et Azure DevOps.</li>
           </ul>
@@ -381,12 +390,28 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
       <div class="when">Janv. 2019 – Avr. 2021<span class="dur">2 ans 4 mois · Lille</span></div>
       <div>
         <h3>Scrum Master</h3>
-        <div class="co">Sopra Steria · Société Générale &amp; Banque de France</div>
+        <div class="co">Sopra Steria · Banque de France &amp; Société Générale</div>
+        <div class="sub">
+          <div class="team">
+            <h4>Banque de France — transformation agile</h4>
+            <ul>
+              <li>Passage d'un engagement de résultat (cycle en V) à un engagement de moyens : mise à disposition d'une équipe Scrum.</li>
+              <li>Formation de l'équipe et du client à Scrum ; rôle moteur dans la transformation.</li>
+              <li>Refonte complète du parcours de prise de rendez-vous de la Banque de France.</li>
+            </ul>
+            <div class="wins res"><b>Résultat</b><ul><li>Meilleure collaboration et beaucoup moins de tensions entre client et fournisseur.</li></ul></div>
+          </div>
+          <div class="team">
+            <h4>Société Générale — Gestion Électronique des Documents (GED)</h4>
+            <ul>
+              <li>Première expérience SAFe, au sein d'une équipe déjà rodée à Scrum : coordination multi-équipes et synchronisation des PI Planning ; documentation sur Confluence.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="lbl">Dans les deux contextes</p>
         <ul>
-          <li>Coordination multi-équipes et synchronisation des PI Planning dans un cadre SAFe.</li>
           <li>Animation des événements Scrum (Daily, Sprint Planning, Sprint Review, Rétrospective), levée des obstacles, coaching des développeurs et des PO.</li>
-          <li>Participation active à la transformation agile d'une équipe Banque de France.</li>
-          <li>En parallèle du rôle de Scrum Master : manager hiérarchique de 6 puis 7 collaborateurs Sopra Steria (objectifs annuels, suivi en cours d'année, défense des augmentations, entretiens annuels).</li>
+          <li>Manager hiérarchique des 7 membres de l'équipe dont j'étais Scrum Master, rôle hérité en tant que plus senior et seul volontaire : objectifs annuels, suivi, défense des augmentations, entretiens annuels. Instances managériales dédiées, et posture de facilitation en retrait pendant les événements Scrum.</li>
         </ul>
       </div>
     </article>
@@ -444,8 +469,8 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
       <div class="cert"><span class="badge" data-mono="PSPO I" data-logo="img/certs/pspo1.png"></span><div class="ct"><span class="y">2024</span><span class="t">Professional Scrum Product Owner I</span><span class="o">Scrum.org</span></div></div>
       <div class="cert"><span class="badge" data-mono="PSM II" data-logo="img/certs/psm2.png"></span><div class="ct"><span class="y">2023</span><span class="t">Professional Scrum Master II</span><span class="o">Scrum.org</span></div></div>
       <div class="cert"><span class="badge" data-mono="GMA" data-logo="img/certs/gma.png"></span><div class="ct"><span class="y">2023</span><span class="t">Gérer des projets avec la méthode Agile (GMA)</span><span class="o">Wensei by Kagilum</span></div></div>
-      <div class="cert"><span class="badge" data-mono="SAFe SM" data-logo="img/certs/safe-sm.png"></span><div class="ct"><span class="y">2020</span><span class="t">SAFe® 5 Scrum Master</span><span class="o">Scaled Agile</span></div></div>
-      <div class="cert"><span class="badge" data-mono="SAFe P" data-logo="img/certs/safe-practitioner.png"></span><div class="ct"><span class="y">2020</span><span class="t">SAFe® 5 Practitioner</span><span class="o">Scaled Agile</span></div></div>
+      <div class="cert"><span class="badge" data-mono="SAFe SM" data-logo="img/certs/safe-sm.png"></span><div class="ct"><span class="y">2020</span><span class="t">SAFe 5 Scrum Master</span><span class="o">Scaled Agile</span></div></div>
+      <div class="cert"><span class="badge" data-mono="SAFe P" data-logo="img/certs/safe-practitioner.png"></span><div class="ct"><span class="y">2020</span><span class="t">SAFe 5 Practitioner</span><span class="o">Scaled Agile</span></div></div>
       <div class="cert"><span class="badge" data-mono="PSM I" data-logo="img/certs/psm1.png"></span><div class="ct"><span class="y">2019</span><span class="t">Professional Scrum Master I</span><span class="o">Scrum.org</span></div></div>
     </div>
   </div>
@@ -489,6 +514,11 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
     <div>
       <h2>Un projet, une équipe à accompagner ?</h2>
       <p>Actuellement en mission chez Renault Digital via ma structure Agi'Leroy, je suis disponible sous un mois pour une nouvelle mission. Parlons de votre contexte.</p>
+      <ul class="conds">
+        <li><b>Formats</b> Missions ponctuelles (audit, formation) ou missions longues en régie (1 à 3 ans)</li>
+        <li><b>Sur site</b> Jusqu'à 3 jours par semaine à Lille ; à Paris, 1 jour par semaine de préférence, 2 jours consécutifs au maximum</li>
+        <li><b>Structure</b> Agi'Leroy (SASU)</li>
+      </ul>
     </div>
     <div class="acts">
       <a class="btn primary" href="mailto:vincentleroy59199@hotmail.fr">✉&nbsp; M'écrire</a>
