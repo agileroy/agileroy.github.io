@@ -111,19 +111,40 @@ section{padding:56px 0}
 .wins ul{list-style:none;padding:0}
 .wins li{padding-left:24px;position:relative}
 .wins li::before{content:"✓";position:absolute;left:0;color:var(--ok);font-weight:700}
-.sub{margin-top:14px}
-.sub h4{margin:16px 0 4px;font-size:16px}
-.sub p{margin:0;color:var(--muted)}
-details.more{margin-top:12px}
-details.more summary{cursor:pointer;color:var(--accent);font-weight:600;font-size:15px}
+.intl{display:inline-flex;align-items:flex-start;gap:8px;font-size:14px;font-weight:600;color:var(--muted);background:var(--surface-2);padding:7px 12px;border-radius:10px;margin:0 0 14px}
+.intl svg{flex:0 0 auto;margin-top:3px;color:var(--accent)}
+.sub{margin-top:6px}
+.team{margin-top:18px}
+.team h4{margin:0 0 4px;font-size:16px}
+.team>p{margin:0;color:var(--muted)}
+.wins.res{margin-top:10px;padding:10px 14px}
+.wins.res b{font-size:12px;margin-bottom:2px}
+.wins.res li{margin:3px 0}
+.lbl{margin:22px 0 6px;color:var(--accent);font-weight:600;font-size:15px}
+.also strong{font-weight:600;color:var(--ok)}
 @media (max-width:760px){.job{grid-template-columns:1fr;gap:8px}}
 
+/* téléchargement */
+.dl{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:16px;font-size:14px;color:var(--muted);font-weight:600}
+.dl button{font:inherit;font-weight:600;color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:10px;border:1px solid var(--line);background:var(--surface)}
+.dl button:hover{border-color:var(--accent);color:var(--accent)}
+.dl button[disabled]{opacity:.6;cursor:progress}
+.contact .dl{margin-top:4px;color:color-mix(in srgb,var(--bg) 75%,transparent);justify-content:center}
+.contact .dl button{background:transparent;color:var(--bg);border-color:color-mix(in srgb,var(--bg) 30%,transparent)}
+
 /* certifs */
-.certs{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
-.cert{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:4px}
+.certs{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.cert{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;align-items:center;gap:14px}
+.cert .badge{position:relative;flex:0 0 52px;height:52px;border-radius:12px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden;font-size:11px;font-weight:700;color:#c4552d;text-align:center;line-height:1.1}
+.cert .badge::before{content:attr(data-mono)}
+.cert .badge img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:5px;background:#fff}
+.cert .ct{display:flex;flex-direction:column;gap:2px;min-width:0}
 .cert .y{font-size:13px;color:var(--muted);font-weight:600}
-.cert .t{font-weight:700}
+.cert .t{font-weight:700;line-height:1.35}
 .cert .o{font-size:13px;color:var(--muted)}
+.cert .o:empty{display:none}
+
+.flag{display:inline-block;width:21px;height:14px;border-radius:2px;vertical-align:-2px;margin-right:8px;box-shadow:0 0 0 1px var(--line)}
 
 /* misc grid */
 .grid2{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -154,8 +175,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
 
 /* print = CV */
 @media print{
-  nav,.theme,.cta,footer,details.more summary{display:none}
-  details.more>*{display:block}
+  nav,.theme,.cta,.dl,footer{display:none}
   body{background:#fff;color:#000;font-size:12px}
   section,.hero{padding:16px 0}
   .stat,.pillar,.card,.cert{box-shadow:none}
@@ -199,6 +219,11 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg>
           Ma boîte à outils
         </a>
+      </div>
+      <div class="dl">
+        <span>Télécharger le CV</span>
+        <button type="button" data-export="pdf"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>PDF</button>
+        <button type="button" data-export="docx"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Word</button>
       </div>
       <div class="tags">
         <span class="tag">Scrum</span><span class="tag">Kanban</span><span class="tag">SAFe</span><span class="tag">Coaching d'équipe</span><span class="tag">Facilitation</span><span class="tag">Jira · Azure DevOps</span>
@@ -250,20 +275,30 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
       <div>
         <h3>Scrum Master</h3>
         <div class="co">Renault Digital · Train Car Data (SAFe)</div>
+        <p class="intl"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span>Contexte international : anglais au quotidien pour animer ateliers, réunions et événements Scrum.</span></p>
         <p class="ctx">Accompagnement de deux équipes data</p>
+        <div class="sub">
+          <div class="team">
+            <h4>Pipelines &amp; produits de données</h4>
+            <p>Équipe en charge des pipelines et des produits de données (BigQuery, Pub/Sub, Digital BackBone).</p>
+            <div class="wins res"><b>Résultat</b><ul><li>Cycle time divisé par deux en six mois.</li></ul></div>
+          </div>
+          <div class="team">
+            <h4>Tableaux de bord Looker</h4>
+            <p>Transition vers Scrum : objectifs de sprint, engagement collectif et accompagnement de la PO.</p>
+            <div class="wins res"><b>Résultat</b><ul><li>Plus de prévisibilité : l'équipe prend ses engagements avec confiance.</li><li>PO accompagnée certifiée PSPO I avec 100 % de bonnes réponses.</li></ul></div>
+          </div>
+        </div>
+        <p class="lbl">À l'échelle du train</p>
         <ul>
-          <li>Équipe pipelines &amp; produits de données (BigQuery, Pub/Sub, Digital BackBone).</li>
-          <li>Équipe tableaux de bord Looker : transition vers Scrum, objectifs de sprint et engagement collectif.</li>
           <li>Animation des breakout sessions du PI Planning et des rétrospectives de PIP et de PI ; participation active à la Management Review.</li>
           <li>Coaching sur le découpage vertical du backlog : des US centrées sur un besoin métier.</li>
           <li>Coordination inter-équipes avec le PO de la marketplace de données pour sécuriser les dates de livraison.</li>
         </ul>
         <div class="wins">
-          <b>Résultats</b>
+          <b>Résultat</b>
           <ul>
-            <li>Cycle time divisé par deux dans l'équipe produits de données en six mois.</li>
             <li>Plus de 80 % des engagements tenus à chaque PI par les deux équipes.</li>
-            <li>PO accompagnée certifiée PSPO I avec 100 % de bonnes réponses.</li>
           </ul>
         </div>
       </div>
@@ -274,27 +309,33 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
       <div>
         <h3>Scrum Master</h3>
         <div class="co">Lyreco Group</div>
+        <p class="intl"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span>Contexte international : anglais au quotidien pour animer ateliers, réunions et événements Scrum.</span></p>
         <p class="ctx">Trois équipes accompagnées successivement</p>
         <div class="sub">
-          <h4>Shared Services — API et services internes</h4>
-          <p>Équipe Kanban sollicitée par de nombreux PO : mise en place d'une priorisation commune pour donner de la visibilité et limiter les interruptions.</p>
-          <h4>Search — écosystème WebShop</h4>
-          <p>Remplacement progressif du moteur de recherche e-commerce par Algolia. Travail sur la fiabilité des estimations (Extreme Quotation, story points) : engagements tenus et dates de livraison partagées.</p>
-          <h4>Dynamics 365 — CRM des filiales</h4>
-          <p>Migration CRM et reprise des développements par une équipe interne issue de Java, avec un plan de passation suivi par matrice de compétences et un déploiement itératif pays par pays.</p>
+          <div class="team">
+            <h4>Shared Services — API et services internes</h4>
+            <p>Équipe Kanban sollicitée par plus de dix PO, chacun avec ses urgences : mise en place d'une revue de priorisation hebdomadaire réunissant tous les PO, arbitrée par le CPO.</p>
+            <div class="wins res"><b>Résultat</b><ul><li>Les sujets sont menés jusqu'au bout avant d'en commencer un autre : plus de projets mis de côté au profit de la dernière urgence, et beaucoup moins de frustration dans l'équipe.</li></ul></div>
+          </div>
+          <div class="team">
+            <h4>Search — écosystème WebShop</h4>
+            <p>Remplacement progressif du moteur de recherche e-commerce par Algolia, sur une roadmap ambitieuse fixée par la direction. Fiabilisation des estimations (Extreme Quotation, story points) et priorisation des lots avec la PO.</p>
+            <div class="wins res"><b>Résultat</b><ul><li>Roadmap tenue intégralement, en négociant les périmètres plutôt que les dates.</li></ul></div>
+          </div>
+          <div class="team">
+            <h4>Dynamics 365 — CRM des filiales</h4>
+            <p>Migration CRM et reprise des développements par une équipe interne issue de Java, avec un plan de passation suivi par matrice de compétences et un déploiement itératif pays par pays. Rôle de tampon face à une forte pression managériale, pour préserver le rythme de l'équipe.</p>
+            <div class="wins res"><b>Résultat</b><ul><li>En un an environ, passage d'une équipe 100 % prestataires à une équipe interne de 6 à 7 personnes, autonome et qui poursuit les développements.</li></ul></div>
+          </div>
         </div>
-        <details class="more">
-          <summary>Et aussi…</summary>
+        <div class="also">
+          <p class="lbl">Et aussi</p>
           <ul>
-            <li>Coaching individuel et accompagnement des nouveaux Scrum Masters.</li>
-            <li>Animation d'un échange hebdomadaire entre Scrum Masters autour de Scrum Life.</li>
+            <li>Coaching individuel d'une Scrum Master débutante, ancienne cheffe de projet et formatrice : passage d'une posture de sachant à une posture de facilitation, qui laisse l'équipe faire émerger ses problèmes. <strong>Certification PSM I et prise de poste de Scrum Master.</strong></li>
+            <li>Animation d'un échange hebdomadaire entre les 5 Scrum Masters autour des vidéos Scrum Life : un espace sûr pour partager nos difficultés. <strong>Plus de cohésion, d'entraide, et des solutions trouvées ensemble.</strong></li>
             <li>Formations et ateliers de sensibilisation à l'Agilité par le jeu ; événement de vulgarisation à l'échelle de l'entreprise.</li>
             <li>Administration de Jira Server, Jira Cloud et Azure DevOps.</li>
           </ul>
-        </details>
-        <div class="wins">
-          <b>Résultats</b>
-          <ul><li>Équipe Dynamics 365 autonome et poursuivant les développements après le départ des prestataires.</li></ul>
         </div>
       </div>
     </article>
@@ -316,7 +357,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
     <article class="job">
       <div class="when">Janv. 2018 – Déc. 2018<span class="dur">1 an · Lille</span></div>
       <div>
-        <h3>Chef d'équipe développement</h3>
+        <h3>Chef de projet</h3>
         <div class="co">Sopra Steria · Banque de France</div>
         <ul>
           <li>Responsable d'application pour la Banque de France.</li>
@@ -378,15 +419,16 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
   <div class="wrap">
     <div class="head"><span class="num">04</span><h2>Certifications</h2></div>
     <div class="certs">
-      <div class="cert"><span class="y">2025</span><span class="t">Agile Team Leadership Workshop</span><span class="o">Management 3.0</span></div>
-      <div class="cert"><span class="y">2025</span><span class="t">CCA Agile Niveau 1</span><span class="o">&nbsp;</span></div>
-      <div class="cert"><span class="y">2025</span><span class="t">Professional Scrum with Kanban (PSK)</span><span class="o">Scrum.org</span></div>
-      <div class="cert"><span class="y">2024</span><span class="t">Professional Scrum Product Owner I</span><span class="o">Scrum.org</span></div>
-      <div class="cert"><span class="y">2023</span><span class="t">Professional Scrum Master II</span><span class="o">Scrum.org</span></div>
-      <div class="cert"><span class="y">2023</span><span class="t">Gérer des projets avec la méthode Agile (GMA)</span><span class="o">&nbsp;</span></div>
-      <div class="cert"><span class="y">2020</span><span class="t">SAFe® 5 Scrum Master</span><span class="o">Scaled Agile</span></div>
-      <div class="cert"><span class="y">2020</span><span class="t">SAFe® 5 Practitioner</span><span class="o">Scaled Agile</span></div>
-      <div class="cert"><span class="y">2019</span><span class="t">Professional Scrum Master I</span><span class="o">Scrum.org</span></div>
+      <!-- Logos : déposer le fichier indiqué dans data-logo (img/certs/…). Tant qu'il est absent, le sigle data-mono s'affiche. -->
+      <div class="cert"><span class="badge" data-mono="M3.0" data-logo="img/certs/management30.png"></span><div class="ct"><span class="y">2025</span><span class="t">Agile Team Leadership Workshop</span><span class="o">Management 3.0</span></div></div>
+      <div class="cert"><span class="badge" data-mono="CCA" data-logo="img/certs/cca.png"></span><div class="ct"><span class="y">2025</span><span class="t">CCA Agile Niveau 1</span><span class="o"></span></div></div>
+      <div class="cert"><span class="badge" data-mono="PSK" data-logo="img/certs/psk.png"></span><div class="ct"><span class="y">2025</span><span class="t">Professional Scrum with Kanban (PSK)</span><span class="o">Scrum.org</span></div></div>
+      <div class="cert"><span class="badge" data-mono="PSPO I" data-logo="img/certs/pspo1.png"></span><div class="ct"><span class="y">2024</span><span class="t">Professional Scrum Product Owner I</span><span class="o">Scrum.org</span></div></div>
+      <div class="cert"><span class="badge" data-mono="PSM II" data-logo="img/certs/psm2.png"></span><div class="ct"><span class="y">2023</span><span class="t">Professional Scrum Master II</span><span class="o">Scrum.org</span></div></div>
+      <div class="cert"><span class="badge" data-mono="GMA" data-logo="img/certs/gma.png"></span><div class="ct"><span class="y">2023</span><span class="t">Gérer des projets avec la méthode Agile (GMA)</span><span class="o"></span></div></div>
+      <div class="cert"><span class="badge" data-mono="SAFe SM" data-logo="img/certs/safe-sm.png"></span><div class="ct"><span class="y">2020</span><span class="t">SAFe® 5 Scrum Master</span><span class="o">Scaled Agile</span></div></div>
+      <div class="cert"><span class="badge" data-mono="SAFe P" data-logo="img/certs/safe-practitioner.png"></span><div class="ct"><span class="y">2020</span><span class="t">SAFe® 5 Practitioner</span><span class="o">Scaled Agile</span></div></div>
+      <div class="cert"><span class="badge" data-mono="PSM I" data-logo="img/certs/psm1.png"></span><div class="ct"><span class="y">2019</span><span class="t">Professional Scrum Master I</span><span class="o">Scrum.org</span></div></div>
     </div>
   </div>
 </section>
@@ -409,8 +451,8 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
         <ul>
           <li>Master Ingénierie de la chimie et des matériaux<small>UVHC · 2010</small></li>
           <li>Bac S, mention bien<small>2004</small></li>
-          <li>Français<small>Langue maternelle</small></li>
-          <li>Anglais<small>C1 – professionnel</small></li>
+          <li><svg class="flag" viewBox="0 0 3 2" aria-hidden="true"><rect width="1" height="2" fill="#002395"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#ed2939"/></svg>Français<small>Langue maternelle</small></li>
+          <li><svg class="flag" viewBox="0 0 60 30" preserveAspectRatio="none" aria-hidden="true"><clipPath id="ukS"><path d="M0,0v30h60V0z"/></clipPath><clipPath id="ukT"><path d="M30,15h30v15zv15H0zH0V0zV0h30z"/></clipPath><g clip-path="url(#ukS)"><path d="M0,0v30h60V0z" fill="#012169"/><path d="M0,0L60,30M60,0L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0L60,30M60,0L0,30" clip-path="url(#ukT)" stroke="#C8102E" stroke-width="4"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#C8102E" stroke-width="6"/></g></svg>Anglais<small>C1 – professionnel, pratique quotidienne en contexte international</small></li>
         </ul>
       </div>
       <div class="card">
@@ -433,6 +475,7 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
     <div class="acts">
       <a class="btn primary" href="mailto:vincentleroy59199@hotmail.fr">✉&nbsp; M'écrire</a>
       <a class="btn" href="https://www.linkedin.com/in/leroy-vincent/" target="_blank" rel="noopener">Me suivre sur LinkedIn</a>
+      <div class="dl"><span>CV :</span><button type="button" data-export="pdf">PDF</button><button type="button" data-export="docx">Word</button></div>
     </div>
   </div>
 </div>
@@ -449,6 +492,26 @@ footer{padding:0 0 40px;color:var(--muted);font-size:14px;text-align:center}
     try{localStorage.setItem('theme',next);}catch(e){}
   });
   document.getElementById('yr').textContent=new Date().getFullYear();
+
+  // Logos de certifications : affichés seulement si le fichier existe
+  document.querySelectorAll('.cert .badge[data-logo]').forEach(function(b){
+    var img=new Image(); img.alt='';
+    img.onload=function(){ b.appendChild(img); };
+    img.src=b.getAttribute('data-logo');
+  });
+
+  // Export du CV (bibliothèques chargées au premier clic)
+  document.querySelectorAll('[data-export]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var fmt=btn.getAttribute('data-export'), label=btn.innerHTML;
+      btn.disabled=true; btn.textContent='Préparation…';
+      var done=function(){ btn.disabled=false; btn.innerHTML=label; };
+      var go=function(){ return window.CVExport[fmt](); };
+      (window.CVExport?Promise.resolve():new Promise(function(ok,ko){
+        var s=document.createElement('script'); s.src='cv-export.js'; s.onload=ok; s.onerror=ko; document.head.appendChild(s);
+      })).then(go).then(done,function(e){ console.error(e); done(); alert("L'export n'a pas pu être généré. Réessayez dans un instant."); });
+    });
+  });
 })();
 </script>
 <script data-goatcounter="https://vincentleroy.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
