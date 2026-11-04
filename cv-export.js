@@ -87,7 +87,7 @@
         $$('.team', el).forEach(function (t) {
           var r = $('.wins', t);
           j.blocks.push({
-            type: 'team', name: txt($('h4', t)), desc: txt($(':scope > p', t)),
+            type: 'team', name: txt($('h4', t)), desc: $$(':scope > p', t).map(txt),
             result: r ? { label: txt($('b', r)), items: items($('ul', r)) } : null
           });
         });
@@ -178,7 +178,7 @@
       else if (b.type === 'result') out.push(pdfResult(b));
       else if (b.type === 'team') {
         out.push({ text: b.name, style: 'team' });
-        if (b.desc) out.push({ text: b.desc, margin: [0, 0, 0, 2] });
+        b.desc.forEach(function (d) { out.push({ text: d, margin: [0, 0, 0, 3] }); });
         // l'en-tête du poste reste sur la même page que la première équipe
         if (!headDone) { out = [{ stack: out, unbreakable: true }]; headDone = true; }
         if (b.result) out.push(pdfResult(b.result));
@@ -186,7 +186,7 @@
     });
     // les expériences courtes ne sont jamais coupées entre deux pages
     var compact = !j.blocks.some(function (b) { return b.type === 'team'; });
-    return { stack: out, margin: [0, 0, 0, 12], unbreakable: compact };
+    return { stack: out, margin: [0, 0, 0, 10], unbreakable: compact };
   }
 
   function buildPdf(cv) {
@@ -245,9 +245,9 @@
 
     return {
       pageSize: 'A4',
-      pageMargins: [40, 40, 40, 44],
+      pageMargins: [40, 34, 40, 40],
       info: { title: 'CV – ' + cv.name, author: cv.name },
-      defaultStyle: { font: 'Roboto', fontSize: 9.5, color: C.ink, lineHeight: 1.18 },
+      defaultStyle: { font: 'Roboto', fontSize: 9.2, color: C.ink, lineHeight: 1.18 },
       footer: function (page, pages) {
         return { text: cv.name + ' · ' + short(cv.site) + '   —   ' + page + ' / ' + pages, alignment: 'center', fontSize: 8, color: C.muted, margin: [0, 16, 0, 0] };
       },
@@ -346,7 +346,7 @@
         else if (b.type === 'result') kids.push.apply(kids, result(b));
         else if (b.type === 'team') {
           kids.push(new P({ spacing: { before: 120, after: 20 }, keepNext: true, children: [new T({ text: b.name, bold: true })] }));
-          if (b.desc) kids.push(new P({ spacing: { after: 40 }, children: [new T({ text: b.desc })] }));
+          b.desc.forEach(function (d) { kids.push(new P({ spacing: { after: 40 }, children: [new T({ text: d })] })); });
           if (b.result) kids.push.apply(kids, result(b.result));
         }
       });
