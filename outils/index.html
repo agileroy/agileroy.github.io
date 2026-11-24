@@ -131,6 +131,19 @@ h2 {
   display: grid; place-items: center;
 }
 .glyph svg { width: 34px; height: 34px; }
+.side { display: grid; justify-items: center; gap: 8px; }
+.dur {
+  min-width: 56px;
+  padding: 3px 6px;
+  border-radius: 6px;
+  background: var(--note);
+  color: var(--note-ink);
+  font: 600 13px/1.3 var(--body);
+  text-align: center;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .body { display: grid; gap: 8px; min-width: 0; }
 h3 {
   font-family: var(--display);
@@ -405,16 +418,19 @@ footer { color: var(--muted); font-size: 13px; border-top: 1px solid var(--line)
         </div>
       </a>
       <a class="tool" href="https://agileroy.github.io/wip-limit-game/" target="_blank" rel="noopener">
-        <div class="glyph" aria-hidden="true">
-          <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="4" y="5" width="7" height="5" rx="1.5" fill="currentColor" fill-opacity=".15"/>
-            <rect x="4" y="12" width="7" height="5" rx="1.5" fill="currentColor" fill-opacity=".15"/>
-            <rect x="4" y="19" width="7" height="5" rx="1.5" fill="currentColor" fill-opacity=".15"/>
-            <rect x="13.5" y="5" width="7" height="5" rx="1.5"/>
-            <rect x="13.5" y="12" width="7" height="5" rx="1.5"/>
-            <rect x="23" y="5" width="7" height="5" rx="1.5" fill="currentColor" fill-opacity=".15"/>
-            <rect x="4" y="28.5" width="26" height="3" rx="1.5" stroke-width="1.4" stroke-dasharray="2 2"/>
-          </svg>
+        <div class="side">
+          <div class="glyph" aria-hidden="true">
+            <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="4" y="5" width="7" height="5" rx="1.5" fill="currentColor" fill-opacity=".15"/>
+              <rect x="4" y="12" width="7" height="5" rx="1.5" fill="currentColor" fill-opacity=".15"/>
+              <rect x="4" y="19" width="7" height="5" rx="1.5" fill="currentColor" fill-opacity=".15"/>
+              <rect x="13.5" y="5" width="7" height="5" rx="1.5"/>
+              <rect x="13.5" y="12" width="7" height="5" rx="1.5"/>
+              <rect x="23" y="5" width="7" height="5" rx="1.5" fill="currentColor" fill-opacity=".15"/>
+              <rect x="4" y="28.5" width="26" height="3" rx="1.5" stroke-width="1.4" stroke-dasharray="2 2"/>
+            </svg>
+          </div>
+          <span class="dur" title="Durée prévue : 60 minutes"><span class="sr">Durée prévue : </span>60 min</span>
         </div>
         <div class="body">
           <h3>Rush en cuisine</h3>
@@ -424,35 +440,41 @@ footer { color: var(--muted); font-size: 13px; border-top: 1px solid var(--line)
         </div>
       </a>
       <a class="tool" href="https://agileroy.github.io/context-switching-game/" target="_blank" rel="noopener">
-        <div class="glyph" aria-hidden="true">
-          <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="4" y="5" width="7" height="5" rx="1.5" fill="currentColor" fill-opacity=".15"/>
-            <rect x="4" y="12" width="7" height="5" rx="1.5" fill="currentColor" fill-opacity=".15"/>
-            <rect x="4" y="19" width="7" height="5" rx="1.5" fill="currentColor"/>
-            <rect x="13.5" y="5" width="7" height="5" rx="1.5"/>
-            <rect x="13.5" y="12" width="7" height="5" rx="1.5"/>
-            <rect x="13.5" y="19" width="7" height="5" rx="1.5"/>
-            <rect x="23" y="5" width="7" height="5" rx="1.5"/>
-            <rect x="23" y="12" width="7" height="5" rx="1.5"/>
-            <rect x="23" y="19" width="7" height="5" rx="1.5"/>
-            <path d="M7.5 28.5v3M17 28.5v3M26.5 28.5v3" stroke-width="1.4" stroke-dasharray="1.5 1.5"/>
-          </svg>
+        <div class="side">
+          <div class="glyph" aria-hidden="true">
+            <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="4" y="5" width="7" height="5" rx="1.5" fill="currentColor" fill-opacity=".15"/>
+              <rect x="4" y="12" width="7" height="5" rx="1.5" fill="currentColor" fill-opacity=".15"/>
+              <rect x="4" y="19" width="7" height="5" rx="1.5" fill="currentColor"/>
+              <rect x="13.5" y="5" width="7" height="5" rx="1.5"/>
+              <rect x="13.5" y="12" width="7" height="5" rx="1.5"/>
+              <rect x="13.5" y="19" width="7" height="5" rx="1.5"/>
+              <rect x="23" y="5" width="7" height="5" rx="1.5"/>
+              <rect x="23" y="12" width="7" height="5" rx="1.5"/>
+              <rect x="23" y="19" width="7" height="5" rx="1.5"/>
+              <path d="M7.5 28.5v3M17 28.5v3M26.5 28.5v3" stroke-width="1.4" stroke-dasharray="1.5 1.5"/>
+            </svg>
+          </div>
+          <span class="dur" title="Durée prévue : 15 minutes"><span class="sr">Durée prévue : </span>15 min</span>
         </div>
         <div class="body">
           <h3>Une chose à la fois</h3>
           <p>Trois petits projets, trois clients, un seul cerveau. Chacun joue sur son téléphone trois manches de deux minutes : en multitâche, en focus, puis en focus interrompu par des messages de collègues. L'animateur révèle ensuite les résultats de toute l'équipe : en focus, le premier client arrive bien plus tôt, et presque tout le monde est ralenti par les interruptions. Quinze minutes, débrief compris.</p>
-          <div class="chips"><span class="chip">context switching</span><span class="chip">en équipe</span><span class="chip">15 minutes</span></div>
+          <div class="chips"><span class="chip">context switching</span><span class="chip">en équipe</span></div>
           <div class="go"><span class="url">context-switching-game</span><span class="cta">Ouvrir <span>→</span></span></div>
         </div>
       </a>
       <a class="tool" href="https://agileroy.github.io/atelier-produit/" target="_blank" rel="noopener">
-        <div class="glyph" aria-hidden="true">
-          <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M2 15 L9 8 L16 15 L9 22 Z" fill="currentColor" fill-opacity=".15"/>
-            <path d="M18 15 L25 8 L32 15 L25 22 Z"/>
-            <path d="M2 15 H32" stroke-width="1.4"/>
-            <rect x="4" y="28.5" width="26" height="3" rx="1.5" stroke-width="1.4" stroke-dasharray="2 2"/>
-          </svg>
+        <div class="side">
+          <div class="glyph" aria-hidden="true">
+            <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M2 15 L9 8 L16 15 L9 22 Z" fill="currentColor" fill-opacity=".15"/>
+              <path d="M18 15 L25 8 L32 15 L25 22 Z"/>
+              <path d="M2 15 H32" stroke-width="1.4"/>
+              <rect x="4" y="28.5" width="26" height="3" rx="1.5" stroke-width="1.4" stroke-dasharray="2 2"/>
+            </svg>
+          </div>
+          <span class="dur" title="Durée prévue : environ 2 heures"><span class="sr">Durée prévue : </span>2 h</span>
         </div>
         <div class="body">
           <h3>Atelier Produit</h3>
